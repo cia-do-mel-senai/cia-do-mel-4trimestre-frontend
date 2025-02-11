@@ -1,1 +1,5 @@
-# cia-do-mel-3trimestre-frontend
+# Cia do Mel
+
+# Integrantes do grupo
+
+[Victor Malmann da cunha](https://github.com/Victormalmanncunha)
