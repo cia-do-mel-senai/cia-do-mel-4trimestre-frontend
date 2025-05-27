@@ -1,15 +1,21 @@
 import { Import } from "lucide-react";
 import Header from "../../components/Header/Header";
-import "./ProductRegister.css";
-import { useState, useRef } from "react";
+import "./ProductEdit.css";
+import { useState, useRef, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
-export default function ProductRegister() {
+export default function ProductEdit() {
+  const params = useParams();
   const [nome, setNome] = useState("");
   const [preco, setPreco] = useState(0);
   const [descricao, setDescricao] = useState("");
   const [imagem, setImagem] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const inputRef = useRef(null);
+
+  useEffect(() => {
+    console.log(params.id);
+  }, []);
 
   const handleImageClick = () => {
     inputRef.current?.click();
@@ -24,14 +30,11 @@ export default function ProductRegister() {
   };
 
   return (
-    <div className="product-register-container">
+    <div className="product-edit-container">
       <Header />
-      <div className="product-register-body">
-        <div className="product-register-form">
-          <div
-            className="register-product-import-icon"
-            onClick={handleImageClick}
-          >
+      <div className="product-edit-body">
+        <div className="product-edit-form">
+          <div className="edit-product-import-icon" onClick={handleImageClick}>
             {previewUrl ? (
               <img
                 src={previewUrl}
@@ -56,8 +59,8 @@ export default function ProductRegister() {
             onChange={handleImageChange}
           />
 
-          <div className="product-register-inputs">
-            <h2>Cadastro de produto</h2>
+          <div className="product-edit-inputs">
+            <h2>Edição de produto</h2>
             <label htmlFor="nome">Nome:</label>
             <input
               type="text"
@@ -79,7 +82,7 @@ export default function ProductRegister() {
               onChange={(e) => setDescricao(e.target.value)}
             />
 
-            <button>Adicionar</button>
+            <button>Alterar</button>
           </div>
         </div>
       </div>
