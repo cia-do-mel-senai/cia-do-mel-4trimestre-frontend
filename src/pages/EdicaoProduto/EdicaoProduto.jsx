@@ -1,21 +1,15 @@
 import { Import } from "lucide-react";
 import Header from "../../components/Header/Header";
-import "./ProductEdit.css";
-import { useState, useRef, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import "./EdicaoProduto.css";
+import { useState, useRef } from "react";
 
-export default function ProductEdit() {
-  const params = useParams();
+export default function EdicaoProduto() {
   const [nome, setNome] = useState("");
   const [preco, setPreco] = useState(0);
   const [descricao, setDescricao] = useState("");
   const [imagem, setImagem] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const inputRef = useRef(null);
-
-  useEffect(() => {
-    console.log(params.id);
-  }, []);
 
   const handleImageClick = () => {
     inputRef.current?.click();
@@ -26,14 +20,15 @@ export default function ProductEdit() {
     if (file) {
       setImagem(file);
       setPreviewUrl(URL.createObjectURL(file));
+      console.log(imagem);
     }
   };
 
   return (
-    <div className="product-edit-container">
+    <div className="edicao-produto-container">
       <Header />
-      <div className="product-edit-body">
-        <div className="product-edit-form">
+      <div className="edicao-produto-body">
+        <div className="edicao-produto-form">
           <div className="edit-product-import-icon" onClick={handleImageClick}>
             {previewUrl ? (
               <img
@@ -59,7 +54,7 @@ export default function ProductEdit() {
             onChange={handleImageChange}
           />
 
-          <div className="product-edit-inputs">
+          <div className="edicao-produto-inputs">
             <h2>Edição de produto</h2>
             <label htmlFor="nome">Nome:</label>
             <input

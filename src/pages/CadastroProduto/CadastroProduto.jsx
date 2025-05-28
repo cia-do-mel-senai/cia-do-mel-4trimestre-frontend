@@ -1,9 +1,9 @@
 import { Import } from "lucide-react";
 import Header from "../../components/Header/Header";
-import "./ProductRegister.css";
+import "./CadastroProduto.css";
 import { useState, useRef } from "react";
 
-export default function ProductRegister() {
+export default function CadastroProduto() {
   const [nome, setNome] = useState("");
   const [preco, setPreco] = useState(0);
   const [descricao, setDescricao] = useState("");
@@ -20,14 +20,15 @@ export default function ProductRegister() {
     if (file) {
       setImagem(file);
       setPreviewUrl(URL.createObjectURL(file));
+      console.log(imagem);
     }
   };
 
   return (
-    <div className="product-register-container">
+    <div className="cadastro-produto-container">
       <Header />
-      <div className="product-register-body">
-        <div className="product-register-form">
+      <div className="cadastro-produto-body">
+        <div className="cadastro-produto-form">
           <div
             className="register-product-import-icon"
             onClick={handleImageClick}
@@ -56,7 +57,7 @@ export default function ProductRegister() {
             onChange={handleImageChange}
           />
 
-          <div className="product-register-inputs">
+          <div className="cadastro-produto-inputs">
             <h2>Cadastro de produto</h2>
             <label htmlFor="nome">Nome:</label>
             <input
