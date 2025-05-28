@@ -7,7 +7,7 @@ export default function Catalogo() {
     <div className='catalogo-container'
     >
         <Header/>
-        
+        <div className="catalogo-content"></div>
         <Footer />
 
     </div>

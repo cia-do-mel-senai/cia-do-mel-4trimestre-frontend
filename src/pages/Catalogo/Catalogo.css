@@ -6,3 +6,13 @@
     justify-content: space-between;
 }
 
+.catalogo-content{
+    width: 100%;
+    height:auto;
+flex-grow: 1;
+background: #ffd900;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 217, 0, 1) 0%,
+    rgba(255, 128, 0, 1) 100%);
+}
