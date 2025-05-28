@@ -120,7 +120,7 @@ const CadastroCliente = () => {
         <p
           className="possuiConta"
           onClick={() => {
-            navigate("/LoginCliente");
+            navigate("/login-cliente");
           }}
         >
           Já possui uma conta?
