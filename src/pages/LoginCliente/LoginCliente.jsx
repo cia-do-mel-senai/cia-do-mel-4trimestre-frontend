@@ -2,7 +2,6 @@ import "./LoginCliente.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-
 import "./LoginCliente.css";
 
 const LoginCliente = () => {
@@ -60,7 +59,7 @@ const LoginCliente = () => {
         <p
           className="possuiContaLogin"
           onClick={() => {
-            navigate("/CadastroCliente");
+            navigate("/cadastro-cliente");
           }}
         >
           Não tem uma conta?

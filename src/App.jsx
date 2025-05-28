@@ -11,9 +11,9 @@ function App() {
     { path: "/", element: <LandingPage /> },
     { path: "/product/new", element: <ProductRegister /> },
     { path: "/product/:id/edit", element: <ProductEdit /> },
-     { path: "/catalogo", element: < Catalogo/> },
-    { path: "/CadastroCliente", element: <CadastroCliente /> },
-    { path: "/LoginCliente", element: <LoginCliente /> },
+    { path: "/catalogo", element: <Catalogo /> },
+    { path: "/cadastro-cliente", element: <CadastroCliente /> },
+    { path: "/login-cliente", element: <LoginCliente /> },
   ]);
   return <RouterProvider router={router} />;
 }
