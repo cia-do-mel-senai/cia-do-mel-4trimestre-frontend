@@ -1,8 +1,10 @@
 import { Search, ShoppingCart } from "lucide-react";
 import "./Header.css";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export default function Header() {
+  const [usuarioLogado, setUsuarioLogado] = useState(false);
   const navigate = useNavigate();
   return (
     <div className="header-container">
@@ -21,6 +23,22 @@ export default function Header() {
         />
       </div>
       <div className="header-buttons-container">
+        {!usuarioLogado && (
+          <>
+            <p
+              className="header-button"
+              onClick={() => navigate("/cadastro-cliente")}
+            >
+              Registrar
+            </p>
+            <p
+              className="header-button"
+              onClick={() => navigate("/login-cliente")}
+            >
+              Entrar
+            </p>
+          </>
+        )}
         <p className="header-button">Pedidos</p>
         <p className="header-button">Produtos</p>
         <ShoppingCart className="header-button" />

@@ -33,7 +33,7 @@
 .header-buttons-container {
   display: flex;
   align-items: center;
-  gap: 40px;
+  gap: 24px;
   margin-right: 20px;
   color: white;
 }
