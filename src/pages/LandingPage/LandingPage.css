@@ -1,0 +1,39 @@
+.LandingPage-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.LandingPage-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 60px;
+  width: 100%;
+  height: auto;
+  background: #ffd900;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 217, 0, 1) 0%,
+    rgba(255, 128, 0, 1) 100%
+  );
+}
+.LandingPage-body-carrossel {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  width: 1000px;
+  height: 250px;
+  border-radius: 50px;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.LandingPage-body-card {
+  display: flex;
+  align-items: center;
+  width: 1400px;
+  height: 200px;
+  border-radius: 50px;
+  background-color: rgba(0, 0, 0, 0.6);
+}
