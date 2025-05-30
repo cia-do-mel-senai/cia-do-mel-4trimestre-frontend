@@ -1,0 +1,92 @@
+.carrinho-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.carrinho-body {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  background: #ffd900;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 217, 0, 1) 0%,
+    rgba(255, 128, 0, 1) 100%
+  );
+}
+.carrinho-form {
+  display: flex;
+  align-items: center;
+  width: 1000px;
+  height: 550px;
+  border-radius: 50px;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.carrinho-import-icon {
+  width: 300px;
+  height: 300px;
+  padding: 40px;
+  background-color: white;
+  color: #646464;
+  margin: 40px;
+  border-radius: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carrinho-inputs {
+  width: 40%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  font-size: 20px;
+  gap: 10px;
+}
+.carrinho-inputs h2 {
+  font-size: 40px;
+  margin: 10px;
+  padding-top: 50px;
+}
+
+.carrinho-inputs p {
+  font-size: 12px;
+  padding: 8px;
+  text-align: center;
+  padding-top: 50px;
+}
+.carrinho-inputs input {
+  width: 300px;
+  height: 50px;
+  border: 3px white solid;
+  background-color: black;
+  border-radius: 20px;
+  color: white;
+  font-size: 20px;
+  padding-left: 10px;
+}
+.carrinho-inputs button {
+  width: 300px;
+  height: 50px;
+  border: 3px white solid;
+  background-color: black;
+  border-radius: 20px;
+  cursor: pointer;
+  color: white;
+  font-weight: bolder;
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+.carrinho-produtos {
+  width: 60%;
+  height: 100%;
+
+}
