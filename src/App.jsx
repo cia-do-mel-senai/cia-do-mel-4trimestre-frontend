@@ -5,6 +5,7 @@ import EdicaoProduto from "./pages/EdicaoProduto/EdicaoProduto";
 import Catalogo from "./pages/Catalogo/catalogo";
 import CadastroCliente from "./pages/CadastroCliente/CadastroCliente";
 import LoginCliente from "./pages/LoginCliente/LoginCliente";
+import Carrinho from "./pages/Carrinho/Carrinho";
 
 function App() {
   const router = createBrowserRouter([
@@ -14,6 +15,7 @@ function App() {
     { path: "/catalogo", element: <Catalogo /> },
     { path: "/cadastro-cliente", element: <CadastroCliente /> },
     { path: "/login-cliente", element: <LoginCliente /> },
+    { path: "/carrinho", element: <Carrinho /> },
   ]);
   return <RouterProvider router={router} />;
 }
