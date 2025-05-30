@@ -14,6 +14,8 @@ export default function Carrinho() {
           
 
     <div className="carrinho-produtos">
+      <h2>Produtos</h2>
+      
 
     </div>
 

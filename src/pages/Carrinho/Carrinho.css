@@ -85,8 +85,14 @@
   margin-top: 20px;
 }
 
-.carrinho-produtos {
+.carrinho-produtos  {
   width: 60%;
   height: 100%;
+}
+
+.carrinho-produtos h2 {
+  padding: 20px;
+  color: white;
+  font-size: 40px;
 
 }
