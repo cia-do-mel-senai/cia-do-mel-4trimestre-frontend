@@ -149,7 +149,6 @@ export default function Carrinho() {
               </div>
             ))}
             </div>
-            <p>*Ao clicar em <i>confirmar compra</i>, você será redirecionado para o Whatsapp da Cia do Mel para escolher suas formas de pagamento e entrega. </p>
           
 
            
