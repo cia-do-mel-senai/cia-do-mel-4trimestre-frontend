@@ -1,3 +1,5 @@
+import CardProduto from "../../components/CardProduto/CardProduto";
+import Carrossel from "../../components/Carrossel/Carrossel";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import "./LandingPage.css";
@@ -7,8 +9,12 @@ function LandingPage() {
     <div className="LandingPage-container">
       <Header />
       <div className="LandingPage-content">
-        <div className="LandingPage-body-carrossel"></div>
-        <div className="LandingPage-body-card"></div>
+        <div className="LandingPage-body-carrossel">
+          <Carrossel />
+        </div>
+        <div className="LandingPage-body-card">
+          <CardProduto preco={5.9} />
+        </div>
       </div>
       <Footer />
     </div>

@@ -6,16 +6,18 @@ import Catalogo from "./pages/Catalogo/catalogo";
 import CadastroCliente from "./pages/CadastroCliente/CadastroCliente";
 import LoginCliente from "./pages/LoginCliente/LoginCliente";
 import Carrinho from "./pages/Carrinho/Carrinho";
+import Pedidos from "./pages/Pedidos/Pedidos";
 
 function App() {
   const router = createBrowserRouter([
     { path: "/", element: <LandingPage /> },
-    { path: "/product/new", element: <CadastroProduto /> },
-    { path: "/product/:id/edit", element: <EdicaoProduto /> },
+    { path: "/produto/novo", element: <CadastroProduto /> },
+    { path: "/produto/:id/editar", element: <EdicaoProduto /> },
     { path: "/catalogo", element: <Catalogo /> },
     { path: "/cadastro-cliente", element: <CadastroCliente /> },
     { path: "/login-cliente", element: <LoginCliente /> },
     { path: "/carrinho", element: <Carrinho /> },
+    { path: "/pedidos", element: <Pedidos /> },
   ]);
   return <RouterProvider router={router} />;
 }

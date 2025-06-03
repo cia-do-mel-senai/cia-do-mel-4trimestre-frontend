@@ -149,6 +149,9 @@ export default function Carrinho() {
               </div>
             ))}
             </div>
+          
+
+           
           </div>
 
           <div className="carrinho-confirmaCompra">
