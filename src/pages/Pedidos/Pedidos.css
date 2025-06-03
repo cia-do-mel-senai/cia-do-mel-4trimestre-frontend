@@ -1,0 +1,42 @@
+.pedidos-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.pedidos-main {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffd900;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 217, 0, 1) 0%,
+    rgba(255, 128, 0, 1) 100%
+  );
+}
+
+.pedidos-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70%;
+  height: 80%;
+  border-radius: 50px;
+  background-color: rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+}
+.pedidos-body h2 {
+  color: white;
+  width: 90%;
+}
+.pedidos {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  gap: 4px;
+  flex: 1;
+}
