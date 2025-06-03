@@ -38,28 +38,28 @@ export default function Carrinho() {
       quantidade: 1,
     },
     {
-       id: 1,
+       id: 5,
       nome: "Pote de mel 1kg",
       preco: 29.99,
       imagem: "/img/pote1kg.png",
       quantidade: 2,
     },
     {
-      id: 2,
+      id: 6,
       nome: "Pote de mel 500g",
       preco: 17.99,
       imagem: "/img/pote500g.png",
       quantidade: 1,
     },
     {
-      id: 3,
+      id: 7,
       nome: "Pote de mel 1kg",
       preco: 29.99,
       imagem: "/img/pote1kg.png",
       quantidade: 2,
     },
     {
-      id: 4,
+      id: 8,
       nome: "Pote de mel 500g",
       preco: 17.99,
       imagem: "/img/pote500g.png",
@@ -107,7 +107,7 @@ export default function Carrinho() {
       <div className="carrinho-body">
         <div className="carrinho-form">
           <div className="carrinho-produtos-body">
-            <h2>Produtos</h2>
+            <h2>Carrinho de Compras</h2>
 
             <div className="carrinho-produtos">
 

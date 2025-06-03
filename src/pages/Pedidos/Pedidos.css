@@ -1,18 +1,14 @@
-.LandingPage-container {
+.pedidos-container {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
 }
-.LandingPage-content {
+.pedidos-main {
   flex-grow: 1;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
-  gap: 20px;
-  width: 100%;
-  height: auto;
+  justify-content: center;
   background: #ffd900;
   background: linear-gradient(
     180deg,
@@ -20,20 +16,27 @@
     rgba(255, 128, 0, 1) 100%
   );
 }
-.LandingPage-body-carrossel {
+
+.pedidos-body {
+  display: flex;
   flex-direction: column;
-  display: flex;
   align-items: center;
-  width: 1000px;
-  height: 250px;
+  width: 70%;
+  height: 80%;
   border-radius: 50px;
   background-color: rgba(0, 0, 0, 0.6);
+  overflow: hidden;
 }
-.LandingPage-body-card {
+.pedidos-body h2 {
+  color: white;
+  width: 90%;
+}
+.pedidos {
+  width: 90%;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  width: 1200px;
-  height: 300px;
-  border-radius: 50px;
-  background-color: rgba(0, 0, 0, 0.6);
+  overflow-y: auto;
+  gap: 4px;
+  flex: 1;
 }
