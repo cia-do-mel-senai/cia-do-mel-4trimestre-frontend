@@ -66,6 +66,7 @@ export default function CadastroProduto() {
               value={nome}
               onChange={(e) => setNome(e.target.value)}
             />
+        
             <label htmlFor="preco">Preço:</label>
             <input
               type="number"
