@@ -52,5 +52,12 @@
     flex-wrap: wrap;
     justify-content: space-between;
     overflow-y: auto;
-    scrollbar-width: none;
+}
+    .catalogo-produtos::-webkit-scrollbar {
+  width: 6px;
+}
+
+.catalogo-produtos::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
 }
