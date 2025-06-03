@@ -28,6 +28,7 @@ export default function Catalogo() {
             <CardProduto imagem={"https://images.tcdn.com.br/img/img_prod/832872/vinagre_de_mel_557_1_ffd44acc0b20004ac62a4362ed36e861.jpeg"} nome={"Vinagre"} preco={30.99}/>
             <CardProduto imagem={"https://tse4.mm.bing.net/th/id/OIP.RC0ukPn4tS3UWeWGBlrDQgHaLH?r=0&pid=ImgDet&w=191&h=286&c=7"} nome={"Vela de Cera"} preco={25.99}/>
             <CardProduto imagem={"https://guiadopiscicultor.com.br/wp-content/uploads/2025/02/Pote-de-mel-de-cacau-natural-em-uma-mesa-rustica-de-madeira.png"} nome={"Mel de Cacau"} preco={48.999}/>
+        
 
                         </div>
                 </div>

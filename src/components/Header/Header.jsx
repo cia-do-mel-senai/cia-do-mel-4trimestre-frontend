@@ -29,7 +29,7 @@ export default function Header() {
               className="header-button"
               onClick={() => navigate("/cadastro-cliente")}
             >
-              Registrar
+              Cadastre-se
             </p>
             <p
               className="header-button"
@@ -39,9 +39,17 @@ export default function Header() {
             </p>
           </>
         )}
-        <p className="header-button">Pedidos</p>
-        <p className="header-button">Produtos</p>
-        <ShoppingCart className="header-button" />
+        <p className="header-button" onClick={() => navigate("/catalogo")}>
+          Catalogo
+        </p>
+        <p className="header-button" onClick={() => navigate("/pedidos")}>
+          Pedidos
+        </p>
+
+        <ShoppingCart
+          className="header-button"
+          onClick={() => navigate("/carrinho")}
+        />
       </div>
     </div>
   );
