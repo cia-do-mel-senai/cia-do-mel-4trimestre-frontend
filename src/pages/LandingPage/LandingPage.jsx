@@ -13,16 +13,9 @@ function LandingPage() {
           <Carrossel />
         </div>
         <div className="LandingPage-body-card">
-          <p>Pfsadijfbaifo</p>
+          <p>Mais Vendidos</p>
 
           <div className="LandingPage-produto-cards">
-            <CardProduto
-              imagem={
-                "https://loja.mel.com.br/wp-content/uploads/2019/09/mel-puro-onde-comprar-sp-38-510x510.jpg"
-              }
-              nome={"Mel Jatai"}
-              preco={29.999}
-            />
             <CardProduto
               imagem={
                 "https://loja.mel.com.br/wp-content/uploads/2021/11/favo-de-mel-sp-madeira.jpg"
