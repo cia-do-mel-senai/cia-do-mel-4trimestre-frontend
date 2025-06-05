@@ -127,7 +127,7 @@ const CadastroCliente = () => {
         </p>
       </div>
       <div className="texto-parte-amarelo">
-        <h1>A natureza nos dá o melhor, nós entregamos até você! </h1>
+        <h1>A natureza nos dá o melhor. <br />E nós levamos até você! </h1>
       </div>
       <ToastContainer position="top-center" limit={1}></ToastContainer>
     </div>

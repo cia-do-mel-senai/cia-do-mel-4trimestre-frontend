@@ -78,7 +78,7 @@ const LoginCliente = () => {
           />
         </svg>
         <h1>
-          O sabor puro da natureza, <br />
+          O puro sabor da natureza, <br />
           direto da colmeia para você!
         </h1>
       </div>
