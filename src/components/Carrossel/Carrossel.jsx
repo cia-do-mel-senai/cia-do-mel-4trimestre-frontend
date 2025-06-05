@@ -1,28 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { IoIosArrowBack } from "react-icons/io";
+import { useEffect, useState } from "react";
+
 import "./Carrossel.css";
 
 const Carrossel = () => {
   const imagensCarrossel = [
     {
       id: 1,
-      image:
-        "https://thumbs.dreamstime.com/z/uma-fazenda-de-abelhas-nas-montanhas-abkhaz-apicultura-%C3%A9-antiga-arte-preservada-e-desenvolvida-em-muitas-partes-do-mundo-um-276110127.jpg",
+      image: "./public/Group-58.png",
     },
     {
       id: 2,
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn3IZsj67P_-GfH3ThnERuIDOzY_hGJtuM_g&s",
+      image: "./public/Rectangle-46.png",
     },
     {
       id: 3,
-      image:
-        "https://cdn.pixabay.com/photo/2020/07/24/08/41/beer-5433299_1280.jpg",
-    },
-    {
-      id: 4,
-      image:
-        "https://cdn.pixabay.com/photo/2020/07/24/08/41/beer-5433299_1280.jpg",
+      image: "./public/Group-57.png",
     },
   ];
 

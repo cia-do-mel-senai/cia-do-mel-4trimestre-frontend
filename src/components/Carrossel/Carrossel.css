@@ -1,50 +1,3 @@
-/* .carrossel {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 300px;
-  margin: 20px;
-}
-
-.carrossel-container {
-  position: relative;
-  width: 400px;
-  height: 300px;
-  overflow: hidden;
-}
-
-.slide img {
-  width: 100%;
-  height: auto;
-}
-
-.botaoEsquerdo,
-.botaoDireito {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  font-size: 30px;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  z-index: 10;
-}
-
-.botaoEsquerdo:hover,
-.botaoDireito:hover {
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
-.botaoEsquerdo {
-  left: 0;
-}
-
-.botaoDireito {
-  right: 0;
-} */
-
 .carrossel {
   display: flex;
   justify-content: center;
@@ -80,6 +33,7 @@
   padding: 10px;
   cursor: pointer;
   z-index: 10;
+  margin: 0;
 }
 
 .botaoEsquerdo {
