@@ -5,6 +5,8 @@ import { FaCreditCard } from "react-icons/fa6";
 import Footer from "../../components/Footer/Footer";
 import { useState } from "react";
 import { FaTrashAlt } from "react-icons/fa";
+import ModalCarrinho from "../../components/ModalCarrinho/ModalCarrinho";
+
 
 export default function Carrinho() {
 
@@ -66,6 +68,9 @@ export default function Carrinho() {
       quantidade: 1,
     },
   ]);
+
+  const [mostrarModal, setMostrarModal] = useState(false);
+
 
   const adicionarQuantidade = (id) => {
     const produtosAdicionados = produtos.map((item) => {
@@ -156,7 +161,7 @@ export default function Carrinho() {
 
           <div className="carrinho-confirmaCompra">
             <h2>Total: R$ {calcularTotal()}</h2>
-            <button>Confirmar Compra</button>
+            <button onClick={() => setMostrarModal(true)}>Confirmar Compra</button>
             <div style={{ display: "flex", gap: "20px", alignItems: "center", marginTop: "8px" }}>
                 <FaCreditCard size={40} /> 
                 <MdPix size={45}/>
@@ -167,7 +172,8 @@ export default function Carrinho() {
           </div>
         </div>
       </div>
-      <Footer/>
+      {mostrarModal && <ModalCarrinho onClose={() => setMostrarModal(false)} />}
+    <Footer/>
     </div>
   );
 }
