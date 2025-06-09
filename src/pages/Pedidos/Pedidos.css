@@ -1,11 +1,12 @@
 .pedidos-container {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 .pedidos-main {
-  flex-grow: 1;
+  height: calc(100vh - 64px - 64px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -21,8 +22,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 70%;
-  height: 80%;
+  width: 95%;
+  height: 90%;
   border-radius: 50px;
   background-color: rgba(0, 0, 0, 0.6);
   overflow: hidden;
@@ -32,18 +33,19 @@
   width: 90%;
 }
 .pedidos {
-  padding-right: 8px;
-  width: 90%;
+  padding-right: 50px;
+  width: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow-y: auto;
-  gap: 4px;
+  gap: 6px;
   flex: 1;
 }
 
 .pedidos::-webkit-scrollbar {
   width: 6px;
+  
 }
 
 .pedidos::-webkit-scrollbar-thumb {

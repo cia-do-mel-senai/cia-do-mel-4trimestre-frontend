@@ -1,12 +1,12 @@
 .pedido-container {
   width: 100%;
-  height: 40px;
+  height: 50px;
   padding: 12px;
   margin-top: 4px;
   margin-bottom: 4px;
-
+  
   box-sizing: border-box;
-  border-radius: 20px;
+  border-radius: 15px;
   background-color: white;
   display: flex;
   align-items: center;
@@ -16,32 +16,32 @@
 
 .status-texto {
   padding: 5px;
-  border-radius: 4px;
-  color: white;
+  /*border-radius: 4px; */
+  /*color: white; */
   font-weight: bold;
 }
 
 /* Cores diferentes para cada status */
 .status-realizado {
-  background-color: #4caf50; /* verde */
+  color: #4caf50; /* verde */
 }
 
 .status-preparo {
-  background-color: #ff9800; /* laranja */
+  color: #ff9800; /* laranja */
 }
 
 .status-enviado {
-  background-color: #2196f3; /* azul */
+  color: #2196f3; /* azul */
 }
 
 .status-entregue {
-  background-color: #9c27b0; /* roxo */
+  color: #9c27b0; /* roxo */
 }
 
 .status-cancelado {
-  background-color: #f44336; /* vermelho */
+  color: #f44336; /* vermelho */
 }
 
 .status-default {
-  background-color: #9e9e9e; /* cinza neutro */
+  color: #9e9e9e; /* cinza neutro */
 }
