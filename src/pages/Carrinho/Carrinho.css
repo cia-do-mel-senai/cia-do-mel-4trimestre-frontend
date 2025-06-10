@@ -95,6 +95,7 @@
   font-weight: bolder;
   font-size: 20px;
   margin-top: 20px;
+  border: black;
 }
 
 .carrinho-confirmaCompra button:hover {

@@ -6,7 +6,9 @@ import Footer from "../../components/Footer/Footer";
 import { useState } from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import ModalCarrinho from "../../components/ModalCarrinho/ModalCarrinho";
-
+import { FaRegTrashCan } from "react-icons/fa6";
+import { FiMinus } from "react-icons/fi";
+import { IoAddOutline } from "react-icons/io5";
 
 export default function Carrinho() {
 
@@ -131,20 +133,20 @@ export default function Carrinho() {
                       if(item.quantidade === 1) {
                         return (
                           <button onClick={() => removerProduto(item.id)}>
-                            <FaTrashAlt />
+                            <FaRegTrashCan />
                           </button>
                         );
                       } else {
                         return (
                           <button onClick={() => excluirQuantidade(item.id)}>
-                            -
+                            <FiMinus />
                           </button>
                         );
                       }
                     })()}
                     <span>{item.quantidade}</span>
                     <button onClick={() => adicionarQuantidade(item.id)}>
-                      +
+                      <IoAddOutline />                    
                     </button>
                   </div>
                 </div>
