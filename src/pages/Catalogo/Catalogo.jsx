@@ -9,16 +9,25 @@ export default function Catalogo() {
       <Header />
       <div className="catalogo-content">
          <div className="catalogo-filtros">
-            <select name="" id="">
+            <select name="categaroia" id="categoria">
               <option value="">Categorias</option>
+              <option value="todasCategorias">Todas as Categorias</option>
+              <option value="alimentos">Alimentos</option>
+              <option value="cuidadosSaude">Cuidados com a Saúde</option>
+              <option value="belezaHigiene">Beleza e Higiene</option>
+              <option value="produtosNaturais">Produtos Naturais</option>
             </select>
-            <select name="" id="">
+            <select name="filtro" id="filtro">
               <option value="">Filtro</option>
+              <option value="menorPreco">Menor Preço</option>
+              <option value="maiorPreco">Maior Preço</option>
+              <option value="nomeAZ">Nome A-Z</option>
+              <option value="nomeZA">Nome Z-A</option>
             </select>
           </div>
+        
         <div className="catalogo-body">
-         
-          <div className="catalogo-produtos">
+         <div className="catalogo-produtos">
             <CardProduto
               imagem={
                 "https://loja.mel.com.br/wp-content/uploads/2019/09/mel-puro-onde-comprar-sp-38-510x510.jpg"

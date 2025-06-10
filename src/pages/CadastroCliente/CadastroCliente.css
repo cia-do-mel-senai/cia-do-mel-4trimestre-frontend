@@ -17,6 +17,14 @@
   );
 }
 
+.texto-parte-amarelo svg {
+  position: absolute;
+  z-index: 0;
+  color: yellow;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
 .texto-parte-amarelo h1 {
   color: #000000;
   font-weight: bold;
@@ -24,6 +32,7 @@
   text-align: center;
   padding: 0, 1rem;
   justify-content: center;
+   z-index: 1;
 }
 
 .Formulario-cadastro {
@@ -36,6 +45,21 @@
   align-items: center;
   gap: 0.3rem;
 }
+
+.Formulario-arrow-back {
+  position: absolute; 
+  top: 25px;         
+  left: 20px;         
+  font-size: 2em;     
+  color: white;       
+  cursor: pointer;     
+  z-index: 10;        
+}
+
+.Formulario-arrow-back:hover {
+  color: #cbc4c4;      /* Muda a cor ao passar o mouse (opcional) */
+}
+    
 
 .Formulario-cadastro h2 {
   font-size: 2rem;

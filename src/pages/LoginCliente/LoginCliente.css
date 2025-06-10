@@ -19,7 +19,7 @@
 .texto-parte-amarelo-login svg {
   position: absolute;
   z-index: 0;
-  color: yellow;
+  color: #ffff00;
   opacity: 0.3;
   pointer-events: none;
 }
@@ -43,6 +43,20 @@
   justify-content: center;
   align-items: center;
   gap: 0.3rem;
+}
+
+.Formulario-login-arrow-back {
+  position: absolute; 
+  top: 25px;         
+  left: 20px;         
+  font-size: 2em;     
+  color: white;       
+  cursor: pointer;     
+  z-index: 10;        
+}
+
+.Formulario-login-arrow-back:hover {
+  color: #cbc4c4;      
 }
 
 .Formulario-login h2 {
