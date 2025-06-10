@@ -154,18 +154,16 @@ export default function Carrinho() {
               </div>
             ))}
             </div>
-          
-
-           
           </div>
 
           <div className="carrinho-confirmaCompra">
             <h2>Total: R$ {calcularTotal()}</h2>
             <button onClick={() => setMostrarModal(true)}>Confirmar Compra</button>
-            <div style={{ display: "flex", gap: "20px", alignItems: "center", marginTop: "8px" }}>
-                <FaCreditCard size={40} /> 
-                <MdPix size={45}/>
+            <div className="carrinho-icones">
+              <FaCreditCard size={40} className="icone-card" />
+              <MdPix size={45} className="icone-pix" />
             </div>
+
             <p>*Ao clicar em <strong><i>Confirmar Compra</i></strong>, você será redirecionado para o <br />
             Whatsapp da <strong>Cia do Mel</strong> para escolher suas formas de pagamento e entrega.</p>
             

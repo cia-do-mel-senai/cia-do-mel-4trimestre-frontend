@@ -56,6 +56,22 @@
   padding-top: 90px;
 }
 
+.carrinho-icones {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-top: 8px;
+  color: white;
+}
+
+/* Hover individual */
+.icone-card:hover,
+.icone-pix:hover {
+  color: rgb(203, 196, 196);
+  cursor: pointer;
+}
+
+
 .carrinho-confirmaCompra p {
   font-size: 12px;
   padding: 8px;
@@ -83,6 +99,13 @@
   font-weight: bolder;
   font-size: 20px;
   margin-top: 20px;
+}
+
+.carrinho-confirmaCompra button:hover {
+  background-color: rgb(55, 54, 54);
+  color: white;
+  border: 3px solid white;
+  transition: all 0.3s ease;
 }
 
 .carrinho-produtos-body  {

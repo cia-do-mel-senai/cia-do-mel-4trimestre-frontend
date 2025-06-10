@@ -8,8 +8,7 @@ export default function Catalogo() {
     <div className="catalogo-container">
       <Header />
       <div className="catalogo-content">
-        <div className="catalogo-body">
-          <div className="catalogo-filtros">
+         <div className="catalogo-filtros">
             <select name="" id="">
               <option value="">Categorias</option>
             </select>
@@ -17,6 +16,8 @@ export default function Catalogo() {
               <option value="">Filtro</option>
             </select>
           </div>
+        <div className="catalogo-body">
+         
           <div className="catalogo-produtos">
             <CardProduto
               imagem={

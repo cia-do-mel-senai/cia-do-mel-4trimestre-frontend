@@ -10,6 +10,7 @@ export default function Pedidos() {
       <div className="pedidos-main">
         <div className="pedidos-body">
           <h2>Pedidos:</h2>
+          
           <div className="pedidos">
             <Pedido
               data={"05/03/2025"}

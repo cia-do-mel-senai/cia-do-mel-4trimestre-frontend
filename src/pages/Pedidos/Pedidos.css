@@ -33,7 +33,8 @@
   width: 90%;
 }
 .pedidos {
-  padding-right: 50px;
+  padding-right: 100px;
+  padding-left: 100px;
   width: 80%;
   display: flex;
   flex-direction: column;
