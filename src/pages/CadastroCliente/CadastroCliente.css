@@ -23,6 +23,8 @@
   color: yellow;
   opacity: 0.3;
   pointer-events: none;
+  padding-bottom: 140px;
+
 }
 
 .texto-parte-amarelo h1 {

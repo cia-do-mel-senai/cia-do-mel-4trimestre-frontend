@@ -14,8 +14,6 @@ export default function Catalogo() {
               <option value="todasCategorias">Todas as Categorias</option>
               <option value="alimentos">Alimentos</option>
               <option value="cuidadosSaude">Cuidados com a Saúde</option>
-              <option value="belezaHigiene">Beleza e Higiene</option>
-              <option value="produtosNaturais">Produtos Naturais</option>
             </select>
             <select name="filtro" id="filtro">
               <option value="">Filtro</option>
