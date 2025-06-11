@@ -6,7 +6,9 @@ import Footer from "../../components/Footer/Footer";
 import { useState } from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import ModalCarrinho from "../../components/ModalCarrinho/ModalCarrinho";
-
+import { FaRegTrashCan } from "react-icons/fa6";
+import { FiMinus } from "react-icons/fi";
+import { IoAddOutline } from "react-icons/io5";
 
 export default function Carrinho() {
 
@@ -131,20 +133,20 @@ export default function Carrinho() {
                       if(item.quantidade === 1) {
                         return (
                           <button onClick={() => removerProduto(item.id)}>
-                            <FaTrashAlt />
+                            <FaRegTrashCan />
                           </button>
                         );
                       } else {
                         return (
                           <button onClick={() => excluirQuantidade(item.id)}>
-                            -
+                            <FiMinus />
                           </button>
                         );
                       }
                     })()}
                     <span>{item.quantidade}</span>
                     <button onClick={() => adicionarQuantidade(item.id)}>
-                      +
+                      <IoAddOutline />                    
                     </button>
                   </div>
                 </div>
@@ -154,18 +156,16 @@ export default function Carrinho() {
               </div>
             ))}
             </div>
-          
-
-           
           </div>
 
           <div className="carrinho-confirmaCompra">
             <h2>Total: R$ {calcularTotal()}</h2>
             <button onClick={() => setMostrarModal(true)}>Confirmar Compra</button>
-            <div style={{ display: "flex", gap: "20px", alignItems: "center", marginTop: "8px" }}>
-                <FaCreditCard size={40} /> 
-                <MdPix size={45}/>
+            <div className="carrinho-icones">
+              <FaCreditCard size={40} className="icone-card" />
+              <MdPix size={45} className="icone-pix" />
             </div>
+
             <p>*Ao clicar em <strong><i>Confirmar Compra</i></strong>, você será redirecionado para o <br />
             Whatsapp da <strong>Cia do Mel</strong> para escolher suas formas de pagamento e entrega.</p>
             

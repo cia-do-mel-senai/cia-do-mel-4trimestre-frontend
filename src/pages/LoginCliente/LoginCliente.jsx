@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "./LoginCliente.css";
+import { MdOutlineArrowBackIos } from "react-icons/md";
 
 const LoginCliente = () => {
   const [email, setEmail] = useState("");
@@ -24,6 +25,9 @@ const LoginCliente = () => {
   return (
     <div className="container-login">
       <div className="Formulario-login">
+         <div className="Formulario-login-arrow-back" onClick={() => navigate("/")}>
+            <MdOutlineArrowBackIos />
+          </div> 
         <h2>Bem vindo de volta!</h2>
 
         <label htmlFor="email" className="login-label">

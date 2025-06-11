@@ -56,6 +56,19 @@
   padding-top: 90px;
 }
 
+.carrinho-icones {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-top: 8px;
+  color: white;
+}
+
+.icone-card:hover, .icone-pix:hover {
+  color: #cbc4c4;
+}
+
+
 .carrinho-confirmaCompra p {
   font-size: 12px;
   padding: 8px;
@@ -75,7 +88,6 @@
 .carrinho-confirmaCompra button {
   width: 300px;
   height: 50px;
-  border: 3px white solid;
   background-color: black;
   border-radius: 20px;
   cursor: pointer;
@@ -83,6 +95,13 @@
   font-weight: bolder;
   font-size: 20px;
   margin-top: 20px;
+  border: black;
+}
+
+.carrinho-confirmaCompra button:hover {
+  background-color: #1e1d1d;
+  color: white;
+  transition: all 0.3s ease;
 }
 
 .carrinho-produtos-body  {

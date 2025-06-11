@@ -40,7 +40,7 @@ export default function Header() {
           </>
         )}
         <p className="header-button" onClick={() => navigate("/catalogo")}>
-          Catalogo
+          Produtos
         </p>
         <p className="header-button" onClick={() => navigate("/pedidos")}>
           Pedidos
