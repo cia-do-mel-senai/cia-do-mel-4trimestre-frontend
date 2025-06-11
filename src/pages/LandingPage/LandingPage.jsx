@@ -9,9 +9,8 @@ function LandingPage() {
     <div className="LandingPage-container">
       <Header />
       <div className="LandingPage-content">
-        <div className="LandingPage-body-carrossel">
-          <Carrossel />
-        </div>
+        <Carrossel />
+
         <div className="LandingPage-body-card">
           <p>Mais Vendidos</p>
 

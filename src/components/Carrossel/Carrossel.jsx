@@ -6,15 +6,15 @@ const Carrossel = () => {
   const imagensCarrossel = [
     {
       id: 1,
-      image: "./public/Group-58.png",
+      image: "./public/FreteGratis.png",
     },
     {
       id: 2,
-      image: "./public/Rectangle-46.png",
+      image: "./public/Trabalho.png",
     },
     {
       id: 3,
-      image: "./public/Group-57.png",
+      image: "./public/CiaDoMel.png",
     },
   ];
 
