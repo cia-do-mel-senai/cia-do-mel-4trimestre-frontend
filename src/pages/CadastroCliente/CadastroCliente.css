@@ -1,0 +1,128 @@
+.container-cadastro {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+.texto-parte-amarelo {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffd900;
+  background: linear-gradient(
+    219deg,
+    rgba(255, 217, 0, 1) 6%,
+    rgba(255, 128, 0, 1) 100%
+  );
+}
+
+.texto-parte-amarelo svg {
+  position: absolute;
+  z-index: 0;
+  color: yellow;
+  opacity: 0.3;
+  pointer-events: none;
+  padding-bottom: 140px;
+
+}
+
+.texto-parte-amarelo h1 {
+  color: #000000;
+  font-weight: bold;
+  font-size: 2rem;
+  text-align: center;
+  padding: 0, 1rem;
+  justify-content: center;
+   z-index: 1;
+}
+
+.Formulario-cadastro {
+  flex: 0.6;
+  padding: 10rem;
+  background-color: #303030;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.Formulario-arrow-back {
+  position: absolute; 
+  top: 25px;         
+  left: 20px;         
+  font-size: 2em;     
+  color: white;       
+  cursor: pointer;     
+  z-index: 10;        
+}
+
+.Formulario-arrow-back:hover {
+  color: #cbc4c4;      /* Muda a cor ao passar o mouse (opcional) */
+}
+    
+
+.Formulario-cadastro h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+}
+
+.cadastro-label {
+  font-weight: bold;
+  color: white;
+  width: 100%;
+  max-width: 400px;
+}
+
+.cadastro-input,
+.email-input,
+.telefone-input,
+.senha-input,
+.confimarSenha-input {
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  width: 100%;
+  max-width: 400px;
+  background-color: #f9f7f7;
+  color: black;
+}
+
+.botao-registar {
+  margin-top: 0.1rem;
+  padding: 0.8rem;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 400px;
+  transition: background-color 0.3s;
+}
+
+.botao-registar:hover {
+  background-color: #1e1d1d;
+}
+
+.possuiConta {
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-top: 0.2rem;
+  cursor: pointer;
+}
+
+.BotaoCustomizado {
+  margin: 1rem;
+  text-align: center;
+}

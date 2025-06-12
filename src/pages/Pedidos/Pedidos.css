@@ -1,0 +1,55 @@
+.pedidos-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.pedidos-main {
+  height: calc(100vh - 64px - 64px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffd900;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 217, 0, 1) 0%,
+    rgba(255, 128, 0, 1) 100%
+  );
+}
+
+.pedidos-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 95%;
+  height: 90%;
+  border-radius: 50px;
+  background-color: rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+}
+.pedidos-body h2 {
+  color: white;
+  width: 90%;
+}
+.pedidos {
+  padding-right: 100px;
+  padding-left: 100px;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  gap: 6px;
+  flex: 1;
+}
+
+.pedidos::-webkit-scrollbar {
+  width: 6px;
+  
+}
+
+.pedidos::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 10px;
+}

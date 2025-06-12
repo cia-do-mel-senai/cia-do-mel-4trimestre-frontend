@@ -1,0 +1,50 @@
+.LandingPage-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.LandingPage-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  height: auto;
+  background: #ffd900;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 217, 0, 1) 0%,
+    rgba(255, 128, 0, 1) 100%
+  );
+}
+.LandingPage-body-carrossel {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  width: 100px;
+  height: 250px;
+}
+.LandingPage-body-card {
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+  width: 1200px;
+  height: 300px;
+  border-radius: 50px;
+  background-color: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  gap: 30px;
+  color: white;
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+.LandingPage-produto-cards {
+  display: flex;
+  gap: 50px;
+}
+.LandingPage-body-card p {
+  margin: 0;
+}

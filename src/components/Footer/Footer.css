@@ -1,0 +1,24 @@
+.footer-container {
+  width: 100%;
+    background: #303030;
+      height: 64px;
+      color: white;
+      display: flex;
+      flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+}
+
+.footer-container p {
+  margin: 0;
+  padding: 0;
+}
+
+.footer-icones {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
