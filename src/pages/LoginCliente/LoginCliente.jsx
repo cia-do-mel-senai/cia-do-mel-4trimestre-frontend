@@ -11,7 +11,7 @@ const LoginCliente = () => {
 
   const navigate = useNavigate();
 
-  const botaoCadastro = () => {
+  const botaoLogin = () => {
     if (email.trim() === "" || senha.trim() === "") {
       toast.dismiss();
       toast.error("Todos os campos são obrigatório");
@@ -25,9 +25,12 @@ const LoginCliente = () => {
   return (
     <div className="container-login">
       <div className="Formulario-login">
-         <div className="Formulario-login-arrow-back" onClick={() => navigate("/")}>
-            <MdOutlineArrowBackIos />
-          </div> 
+        <div
+          className="Formulario-login-arrow-back"
+          onClick={() => navigate("/")}
+        >
+          <MdOutlineArrowBackIos />
+        </div>
         <h2>Bem vindo de volta!</h2>
 
         <label htmlFor="email" className="login-label">
@@ -57,7 +60,7 @@ const LoginCliente = () => {
             setSenha(e.target.value);
           }}
         />
-        <button className="botao-entrar" onClick={botaoCadastro}>
+        <button className="botao-entrar" onClick={botaoLogin}>
           ENTRAR
         </button>
         <p
