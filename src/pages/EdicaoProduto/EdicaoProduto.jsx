@@ -2,6 +2,9 @@ import { Import } from "lucide-react";
 import Header from "../../components/Header/Header";
 import "./EdicaoProduto.css";
 import { useState, useRef } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export default function EdicaoProduto() {
   const [nome, setNome] = useState("");
@@ -23,6 +26,23 @@ export default function EdicaoProduto() {
       console.log(imagem);
     }
   };
+
+  const handleExcluir = () => {
+    const confirmar = window.confirm("Tem certeza que deseja excluir este produto?");
+    if (confirmar) {
+      toast.success("Produto excluído com sucesso!", {
+        position: "top-center",
+        autoClose: 2000,
+      });
+
+      setNome("");
+      setPreco(0);
+      setDescricao("");
+      setImagem(null);
+      setPreviewUrl(null);
+    }
+  };
+
 
   return (
     <div className="edicao-produto-container">
@@ -77,10 +97,14 @@ export default function EdicaoProduto() {
               onChange={(e) => setDescricao(e.target.value)}
             />
 
-            <button>Alterar</button>
+            <div className="edicao-produto-buttons">
+              <button className="alterar">Alterar</button>
+              <button className="excluir" onClick={handleExcluir}>Excluir</button>
+            </div>
           </div>
         </div>
       </div>
+      <ToastContainer position="top-center" autoClose={3000} />
     </div>
   );
 }

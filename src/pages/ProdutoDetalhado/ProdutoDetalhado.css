@@ -60,22 +60,34 @@
 .produto-detalhado-info button {
   width: 200px;
   height: 50px;
-  border: 3px white solid;
+  border: 3px black;
   background-color: black;
   border-radius: 16px;
   cursor: pointer;
   color: white;
   font-weight: bolder;
-  font-size: 16px;
+  font-size: 24px;
   margin-top: 10px;
 }
+
+.produto-detalhado-info button:hover {
+  background-color: #1e1d1d;
+}
+
 .produto-detalhado-preco {
   font-size: 32px;
   font-weight: bold;
 }
 .produto-detalhado-retornar {
-  position: absolute;
-  left: 2%;
-  top: 2%;
-  cursor: pointer;
+  position: absolute; 
+  top: 25px;         
+  left: 20px;         
+  font-size: 2em;     
+  color: #303030;;       
+  cursor: pointer;     
+  z-index: 10;       
+}
+
+.produto-detalhado-retornar :hover {
+   color: #cbc4c4;  
 }

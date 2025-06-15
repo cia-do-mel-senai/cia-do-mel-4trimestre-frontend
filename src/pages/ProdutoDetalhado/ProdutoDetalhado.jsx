@@ -3,7 +3,7 @@ import Header from "../../components/Header/Header";
 import "./ProdutoDetalhado.css";
 import { useEffect, useState } from "react";
 import Footer from "../../components/Footer/Footer";
-import { IoReturnUpBack } from "react-icons/io5";
+import { MdOutlineArrowBackIos } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
 export default function ProdutoDetalhado() {
@@ -19,7 +19,7 @@ export default function ProdutoDetalhado() {
     setNome("Pote de mel 1kg");
     setPreco(25);
     setDescricao(
-      "Mel 100% natural, extraído de flores selecionadas. Com sabor suave e doce, ideal para adoçar bebidas, pães e receitas. Sem aditivos ou conservantes, preserva todos os nutrientes e benefícios do mel puro"
+      "Mel 100% natural, extraído de flores selecionadas. Com sabor suave, ideal para adoçar bebidas e receitas. Tem preservado, todos os nutrientes e benefícios do mais puro mel."
     );
     setImagem(
       "https://cdn.awsli.com.br/600x700/305/305913/produto/58888206/1ffc9910b5.jpg"
@@ -47,11 +47,10 @@ export default function ProdutoDetalhado() {
     <div className="produto-detalhado-container">
       <Header />
       <div className="produto-detalhado-body">
-        <IoReturnUpBack
+       <MdOutlineArrowBackIos 
           className="produto-detalhado-retornar"
-          size={60}
           onClick={() => navigate(-1)}
-        />
+       />
         <div className="produto-detalhado">
           <img src={imagem} alt="" />
           <div className="produto-detalhado-info">
