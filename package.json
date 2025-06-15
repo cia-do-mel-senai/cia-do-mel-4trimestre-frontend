@@ -10,7 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "axios": "^1.9.0",
+    "axios": "^1.10.0",
+    "express": "^5.1.0",
     "lucide-react": "^0.511.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -27,6 +28,20 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^16.0.0",
+    "nodemon": "^3.1.10",
     "vite": "^6.3.1"
-  }
+  },
+  "description": "**Cia do Mel** é um e-commerce dedicado a produtos de apicultura, oferecendo uma plataforma prática e intuitiva para a compra de mel, própolis, cera e outros itens relacionados. Com um design focado na experiência do usuário, buscamos trazer o melhor da apicultura para o seu dia a dia.",
+  "main": "eslint.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cia-do-mel-senai/cia-do-mel-3trimestre-frontend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cia-do-mel-senai/cia-do-mel-3trimestre-frontend/issues"
+  },
+  "homepage": "https://github.com/cia-do-mel-senai/cia-do-mel-3trimestre-frontend#readme"
 }
