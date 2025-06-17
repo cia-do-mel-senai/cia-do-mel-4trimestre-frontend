@@ -1,10 +1,13 @@
 import { Search, ShoppingCart } from "lucide-react";
 import "./Header.css";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext } from "react";
+import { AuthContext } from "../../context/authContext";
 
 export default function Header() {
-  const [usuarioLogado, setUsuarioLogado] = useState(false);
+  const { usuario, sair } = useContext(AuthContext);
+  const usuarioLogado = !!usuario;
+
   const navigate = useNavigate();
   return (
     <div className="header-container">
@@ -23,7 +26,7 @@ export default function Header() {
         />
       </div>
       <div className="header-buttons-container">
-        {!usuarioLogado && (
+        {!usuarioLogado ? (
           <>
             <p
               className="header-button"
@@ -38,17 +41,36 @@ export default function Header() {
               Entrar
             </p>
           </>
+        ) : (
+          <p className="header-button" onClick={sair}>
+            Sair
+          </p>
         )}
         <p className="header-button" onClick={() => navigate("/catalogo")}>
           Produtos
         </p>
-        <p className="header-button" onClick={() => navigate("/pedidos")}>
+        <p
+          className="header-button"
+          onClick={() => {
+            if (!usuarioLogado) {
+              navigate("/cadastro-cliente");
+            } else {
+              navigate("/pedidos");
+            }
+          }}
+        >
           Pedidos
         </p>
 
         <ShoppingCart
           className="header-button"
-          onClick={() => navigate("/carrinho")}
+          onClick={() => {
+            if (!usuarioLogado) {
+              navigate("/cadastro-cliente");
+            } else {
+              navigate("/carrinho");
+            }
+          }}
         />
       </div>
     </div>

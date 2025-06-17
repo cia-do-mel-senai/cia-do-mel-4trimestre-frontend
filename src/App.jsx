@@ -8,6 +8,7 @@ import LoginCliente from "./pages/LoginCliente/LoginCliente";
 import Carrinho from "./pages/Carrinho/Carrinho";
 import Pedidos from "./pages/Pedidos/Pedidos";
 import ProdutoDetalhado from "./pages/ProdutoDetalhado/ProdutoDetalhaDO";
+import { AuthProvider } from "./context/authContext";
 
 function App() {
   const router = createBrowserRouter([
@@ -21,6 +22,10 @@ function App() {
     { path: "/carrinho", element: <Carrinho /> },
     { path: "/pedidos", element: <Pedidos /> },
   ]);
-  return <RouterProvider router={router} />;
+  return (
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  );
 }
 export default App;

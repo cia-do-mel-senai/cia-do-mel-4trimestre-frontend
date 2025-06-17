@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./CadastroCliente.css";
 import { ToastContainer, toast } from "react-toastify";
 import { MdOutlineArrowBackIos } from "react-icons/md";
-import { criarUsuario } from "../../../services/servicoUsuario";
+import { criarUsuario } from "../../services/servicoUsuario";
 
 const CadastroCliente = () => {
   const navigate = useNavigate();
