@@ -20,7 +20,6 @@ export function AuthProvider({ children }) {
   }, []);
 
   function login(token) {
-    console.log(token);
     localStorage.setItem("token", token);
     api.defaults.headers.Authorization = `Bearer ${token}`;
 

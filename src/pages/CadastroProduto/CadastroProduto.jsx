@@ -2,12 +2,15 @@ import { Import } from "lucide-react";
 import Header from "../../components/Header/Header";
 import "./CadastroProduto.css";
 import { useState, useRef } from "react";
+import { cadastrarProduto } from "../../services/servicoProduto";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function CadastroProduto() {
   const [nome, setNome] = useState("");
   const [preco, setPreco] = useState(0);
   const [descricao, setDescricao] = useState("");
-  const [imagem, setImagem] = useState(null);
+  const [categoriaId, setCategoriaId] = useState(1);
+  const [imagemBase64, setImagemBase64] = useState("");
   const [previewUrl, setPreviewUrl] = useState(null);
   const inputRef = useRef(null);
 
@@ -18,10 +21,40 @@ export default function CadastroProduto() {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setImagem(file);
       setPreviewUrl(URL.createObjectURL(file));
-      console.log(imagem);
+
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagemBase64(reader.result);
+      };
+      reader.readAsDataURL(file);
     }
+  };
+
+  const adicionarProduto = async () => {
+    const produto = {
+      nome: nome,
+      preco: preco,
+      descricao: preco,
+      categoria_id: categoriaId,
+      imagem: imagemBase64,
+    };
+
+    try {
+      const resposta = await cadastrarProduto(produto);
+      if (resposta.status === 201) {
+        toast.success(resposta.data.mensagem);
+        setNome("");
+        setPreco(0);
+        setDescricao("");
+        setCategoriaId(1);
+        setImagemBase64("");
+        setPreviewUrl(null);
+        if (inputRef.current) {
+          inputRef.current.value = "";
+        }
+      }
+    } catch (error) {}
   };
 
   return (
@@ -66,7 +99,7 @@ export default function CadastroProduto() {
               value={nome}
               onChange={(e) => setNome(e.target.value)}
             />
-        
+
             <label htmlFor="preco">Preço:</label>
             <input
               type="number"
@@ -81,10 +114,23 @@ export default function CadastroProduto() {
               onChange={(e) => setDescricao(e.target.value)}
             />
 
-            <button>Adicionar</button>
+            <select
+              name=""
+              id=""
+              value={categoriaId}
+              onChange={(e) => {
+                setCategoriaId(e.target.value);
+              }}
+            >
+              <option value="1">Alimentos</option>
+              <option value="2">Cuidados com a saúde</option>
+            </select>
+
+            <button onClick={adicionarProduto}>Adicionar</button>
           </div>
         </div>
       </div>
+      <ToastContainer position="top-center" />
     </div>
   );
 }

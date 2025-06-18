@@ -83,3 +83,10 @@
  .cadastro-produto-inputs button:hover {
    background-color: #1e1d1d;
  }
+ .cadastro-produto-inputs select {
+  width: 300px;
+  font-size: 20px;
+  padding: 2px;
+  border-radius: 6px;
+  border: none;
+}

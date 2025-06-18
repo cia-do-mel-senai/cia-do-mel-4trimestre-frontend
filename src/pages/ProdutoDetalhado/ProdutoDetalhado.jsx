@@ -4,7 +4,8 @@ import "./ProdutoDetalhado.css";
 import { useEffect, useState } from "react";
 import Footer from "../../components/Footer/Footer";
 import { MdOutlineArrowBackIos } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { pegarProdutoPorId } from "../../services/servicoProduto";
 
 export default function ProdutoDetalhado() {
   const [nome, setNome] = useState("");
@@ -14,17 +15,23 @@ export default function ProdutoDetalhado() {
   const [imagem, setImagem] = useState(null);
   const [quantidade, setQuantidade] = useState(1);
   const navigate = useNavigate();
+  const params = useParams();
 
   useEffect(() => {
-    setNome("Pote de mel 1kg");
-    setPreco(25);
-    setDescricao(
-      "Mel 100% natural, extraído de flores selecionadas. Com sabor suave, ideal para adoçar bebidas e receitas. Tem preservado, todos os nutrientes e benefícios do mais puro mel."
-    );
-    setImagem(
-      "https://cdn.awsli.com.br/600x700/305/305913/produto/58888206/1ffc9910b5.jpg"
-    );
-    setNota(4.2);
+    const listarProduto = async () => {
+      try {
+        const resposta = await pegarProdutoPorId(params.id);
+
+        const produto = resposta.data;
+
+        setNome(produto.nome);
+        setPreco(Number(produto.preco));
+        setDescricao(produto.descricao);
+        setNota(5);
+        setImagem(produto.imagem);
+      } catch (error) {}
+    };
+    listarProduto();
   }, []);
 
   const renderEstrelas = () => {
@@ -47,10 +54,10 @@ export default function ProdutoDetalhado() {
     <div className="produto-detalhado-container">
       <Header />
       <div className="produto-detalhado-body">
-       <MdOutlineArrowBackIos 
+        <MdOutlineArrowBackIos
           className="produto-detalhado-retornar"
           onClick={() => navigate(-1)}
-       />
+        />
         <div className="produto-detalhado">
           <img src={imagem} alt="" />
           <div className="produto-detalhado-info">

@@ -3,6 +3,7 @@ import "./Header.css";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/authContext";
+import { FaUserGear } from "react-icons/fa6";
 
 export default function Header() {
   const { usuario, sair } = useContext(AuthContext);
@@ -26,6 +27,9 @@ export default function Header() {
         />
       </div>
       <div className="header-buttons-container">
+        {usuario?.tipo_usuario === "admin" && (
+          <FaUserGear color="white" size={25} />
+        )}
         {!usuarioLogado ? (
           <>
             <p
