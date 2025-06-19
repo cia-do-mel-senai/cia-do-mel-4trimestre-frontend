@@ -4,7 +4,7 @@ import Header from "../../components/Header/Header";
 import "./Catalogo.css";
 import { AuthContext } from "../../context/authContext";
 import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { pegarProdutos } from "../../services/servicoProduto";
 
 export default function Catalogo() {
@@ -13,6 +13,8 @@ export default function Catalogo() {
   const [filtro, setFiltro] = useState("");
   const [categoria, setCategoria] = useState("");
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const [pesquisa, setPesquisa] = useState("");
 
   useEffect(() => {
     async function listarProdutos() {
@@ -20,7 +22,6 @@ export default function Catalogo() {
         const resposta = await pegarProdutos();
         if (resposta.status === 200) {
           setProdutos(resposta.data);
-          console.log(resposta.data);
         }
       } catch (error) {
         console.log(error);
@@ -29,20 +30,27 @@ export default function Catalogo() {
     listarProdutos();
   }, []);
 
+  useEffect(() => {
+    setPesquisa(searchParams.get("pesquisa") || "");
+  }, [searchParams]);
+
   return (
     <div className="catalogo-container">
       <Header />
       <div className="catalogo-content">
         <div className="catalogo-filtros">
           <select
-            name="categaroia"
+            name="categoria"
             id="categoria"
             onChange={(e) => {
               setCategoria(e.target.value);
             }}
             value={categoria}
           >
-            <option value="">Categorias</option>
+            <option value="" disabled hidden>
+              Categorias
+            </option>
+            <option value="">Todas as categorias</option>
             <option value="1">Alimentos</option>
             <option value="2">Cuidados com a Saúde</option>
           </select>
@@ -54,7 +62,9 @@ export default function Catalogo() {
             }}
             value={filtro}
           >
-            <option value="">Filtro</option>
+            <option value="" disabled hidden>
+              Filtro
+            </option>
             <option value="menorPreco">Menor Preço</option>
             <option value="maiorPreco">Maior Preço</option>
             <option value="nomeAZ">Nome A-Z</option>
@@ -77,9 +87,10 @@ export default function Catalogo() {
                 if (categoria === "") return true;
                 return produto.categoria_id === Number(categoria);
               })
+              .filter((produto) =>
+                produto.nome.toLowerCase().includes(pesquisa.toLowerCase())
+              )
               .sort((a, b) => {
-                console.log(a);
-
                 if (filtro === "menorPreco")
                   return Number(a.preco) - Number(b.preco);
                 if (filtro === "maiorPreco")

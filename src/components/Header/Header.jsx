@@ -24,6 +24,13 @@ export default function Header() {
           type="text"
           className="header-search-bar"
           placeholder="ZzZzz......"
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              navigate(
+                `/catalogo?pesquisa=${encodeURIComponent(e.target.value)}`
+              );
+            }
+          }}
         />
       </div>
       <div className="header-buttons-container">
