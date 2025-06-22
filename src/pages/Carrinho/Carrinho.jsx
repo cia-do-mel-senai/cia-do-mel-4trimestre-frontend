@@ -4,11 +4,12 @@ import { MdPix } from "react-icons/md";
 import { FaCreditCard } from "react-icons/fa6";
 import Footer from "../../components/Footer/Footer";
 import { useState } from "react";
-import { FaTrashAlt } from "react-icons/fa";
 import ModalCarrinho from "../../components/ModalCarrinho/ModalCarrinho";
 import { FaRegTrashCan } from "react-icons/fa6";
 import { FiMinus } from "react-icons/fi";
 import { IoAddOutline } from "react-icons/io5";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Carrinho() {
 
@@ -25,21 +26,21 @@ export default function Carrinho() {
       nome: "Pote de mel 500g",
       preco: 17.99,
       imagem: "/img/pote500g.png",
-      quantidade: 1,
+      quantidade: 3,
     },
     {
       id: 3,
       nome: "Pote de mel 1kg",
       preco: 29.99,
       imagem: "/img/pote1kg.png",
-      quantidade: 2,
+      quantidade: 4,
     },
     {
       id: 4,
       nome: "Pote de mel 500g",
       preco: 17.99,
       imagem: "/img/pote500g.png",
-      quantidade: 1,
+      quantidade: 5,
     },
     {
        id: 5,
@@ -53,7 +54,7 @@ export default function Carrinho() {
       nome: "Pote de mel 500g",
       preco: 17.99,
       imagem: "/img/pote500g.png",
-      quantidade: 1,
+      quantidade: 3,
     },
     {
       id: 7,
@@ -67,17 +68,16 @@ export default function Carrinho() {
       nome: "Pote de mel 500g",
       preco: 17.99,
       imagem: "/img/pote500g.png",
-      quantidade: 1,
+      quantidade: 4,
     },
   ]);
 
   const [mostrarModal, setMostrarModal] = useState(false);
 
-
   const adicionarQuantidade = (id) => {
     const produtosAdicionados = produtos.map((item) => {
       if (item.id === id) {
-        return {...item, quantidade: item.quantidade + 1};
+        return { ...item, quantidade: item.quantidade + 1 };
       } else {
         return item;
       }
@@ -86,26 +86,47 @@ export default function Carrinho() {
   };
 
   const excluirQuantidade = (id) => {
-    const produtosAdicionados = produtos.map((item) => {
-      if (item.id === id) {
-        if (item.quantidade > 1) {
-          return { ...item, quantidade: item.quantidade - 1};
-        } 
-      } 
-      return item;
-    });
-    setProdutos(produtosAdicionados);
+    const produtosAtualizados = produtos
+      .map((item) => {
+        if (item.id === id) {
+          if (item.quantidade > 1) {
+            return { ...item, quantidade: item.quantidade - 1 };
+          } else {
+            return null; // Retorna null para remover o item caso a quantidade seja 1
+          }
+        }
+        return item;
+      })
+      .filter((item) => item !== null); // Remove os itens null (produtos removidos)
+
+    setProdutos(produtosAtualizados);
   };
 
   const removerProduto = (id) => {
-    const produtosAdicionados = produtos.filter((item) => item.id !== id);
-    setProdutos(produtosAdicionados);
+    const produtosFiltrados = produtos.filter((item) => item.id !== id);
+    setProdutos(produtosFiltrados);
   };
 
   const calcularTotal = () => {
     return produtos
       .reduce((total, item) => total + item.preco * item.quantidade, 0)
       .toFixed(2);
+  };
+
+  const handleConfirmarCompra = () => {
+     if (produtos.length === 0) {
+      toast.error("Seu carrinho está vazio! Adicione produtos antes de confirmar a compra.", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return;
+    }
+    setMostrarModal(true);
   };
 
   return (
@@ -117,63 +138,57 @@ export default function Carrinho() {
             <h2>Carrinho de Compras</h2>
 
             <div className="carrinho-produtos">
-
-
-            {produtos.map((item) => (
-              <div key={item.id} className="produto-item">
-                <img
-                  src={item.imagem}
-                  alt={item.nome}
-                  className="produto-img"
-                  />
-                <div className="produto-info">
-                  <p className="produto-nome">{item.nome}</p>
-                  <div className="produto-qtd">
-                    {(() => {
-                      if(item.quantidade === 1) {
-                        return (
-                          <button onClick={() => removerProduto(item.id)}>
-                            <FaRegTrashCan />
-                          </button>
-                        );
-                      } else {
-                        return (
-                          <button onClick={() => excluirQuantidade(item.id)}>
-                            <FiMinus />
-                          </button>
-                        );
-                      }
-                    })()}
-                    <span>{item.quantidade}</span>
-                    <button onClick={() => adicionarQuantidade(item.id)}>
-                      <IoAddOutline />                    
-                    </button>
+              {produtos.map((item) => (
+                <div key={item.id} className="produto-item">
+                  <img src={item.imagem} alt={item.nome} className="produto-img" />
+                  <div className="produto-info">
+                    <p className="produto-nome">{item.nome}</p>
+                    <div className="produto-qtd">
+                      {item.quantidade === 1 ? (
+                        <button onClick={() => removerProduto(item.id)} aria-label={`Remover produto ${item.nome}`}>
+                          <FaRegTrashCan />
+                        </button>
+                      ) : (
+                        <button onClick={() => excluirQuantidade(item.id)} aria-label={`Diminuir quantidade de ${item.nome}`}>
+                          <FiMinus />
+                        </button>
+                      )}
+                      <span>{item.quantidade}</span>
+                      <button onClick={() => adicionarQuantidade(item.id)} aria-label={`Aumentar quantidade de ${item.nome}`}>
+                        <IoAddOutline />
+                      </button>
+                    </div>
+                  </div>
+                  <div className="produto-preco">
+                    R$ {(item.preco * item.quantidade).toFixed(2)}
                   </div>
                 </div>
-                <div className="produto-preco">
-                  R$ {(item.preco * item.quantidade).toFixed(2)}
-                </div>
-              </div>
-            ))}
+              ))}
             </div>
           </div>
 
           <div className="carrinho-confirmaCompra">
             <h2>Total: R$ {calcularTotal()}</h2>
-            <button onClick={() => setMostrarModal(true)}>Confirmar Compra</button>
+            <button onClick={handleConfirmarCompra}>Confirmar Compra</button>
             <div className="carrinho-icones">
               <FaCreditCard size={40} className="icone-card" />
               <MdPix size={45} className="icone-pix" />
             </div>
 
-            <p>*Ao clicar em <strong><i>Confirmar Compra</i></strong>, você será redirecionado para o <br />
-            Whatsapp da <strong>Cia do Mel</strong> para escolher suas formas de pagamento e entrega.</p>
-            
+            <p>
+              *Ao clicar em <strong><i>Confirmar Compra</i></strong>, você será redirecionado para o <br />
+              Whatsapp da <strong>Cia do Mel</strong> para escolher suas formas de pagamento e entrega.
+            </p>
           </div>
         </div>
       </div>
       {mostrarModal && <ModalCarrinho onClose={() => setMostrarModal(false)} />}
-    <Footer/>
+      <Footer />
+      <ToastContainer /> 
     </div>
   );
 }
+
+
+
+
