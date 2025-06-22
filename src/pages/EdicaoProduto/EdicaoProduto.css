@@ -92,3 +92,10 @@
 .alterar:hover, .excluir:hover {
    background-color: #1e1d1d;
 }
+.edicao-produto-inputs select {
+  width: 300px;
+  font-size: 20px;
+  padding: 2px;
+  border-radius: 6px;
+  border: none;
+}

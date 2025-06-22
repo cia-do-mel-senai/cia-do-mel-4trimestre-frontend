@@ -68,3 +68,11 @@
   background-color: #ccc;
   border-radius: 10px;
 }
+.catalogo-botao-cadastro{
+  border: none;
+  width: 200px;
+  padding: 12px;
+  border-radius: 20px;
+  font-size: 20px;
+  cursor: pointer;
+}

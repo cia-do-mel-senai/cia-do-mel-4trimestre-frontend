@@ -1,18 +1,46 @@
 import { Import } from "lucide-react";
 import Header from "../../components/Header/Header";
 import "./EdicaoProduto.css";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
-
+import "react-toastify/dist/ReactToastify.css";
+import { useParams } from "react-router-dom";
+import {
+  editarProduto,
+  pegarProdutoPorId,
+} from "../../services/servicoProduto";
 
 export default function EdicaoProduto() {
   const [nome, setNome] = useState("");
   const [preco, setPreco] = useState(0);
   const [descricao, setDescricao] = useState("");
-  const [imagem, setImagem] = useState(null);
+  const [categoriaId, setCategoriaId] = useState(1);
+  const [imagemBase64, setImagemBase64] = useState("");
   const [previewUrl, setPreviewUrl] = useState(null);
   const inputRef = useRef(null);
+  const params = useParams();
+
+  useEffect(() => {
+    async function listarProduto() {
+      try {
+        const resposta = await pegarProdutoPorId(params.id);
+
+        if (resposta.status === 200) {
+          const produto = resposta.data;
+          setNome(produto.nome);
+          setPreco(produto.preco);
+          setDescricao(produto.descricao);
+          setImagemBase64(produto.imagem);
+          setPreviewUrl(produto.imagem);
+          setCategoriaId(produto.categoria_id);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    listarProduto();
+  }, []);
 
   const handleImageClick = () => {
     inputRef.current?.click();
@@ -21,14 +49,19 @@ export default function EdicaoProduto() {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setImagem(file);
       setPreviewUrl(URL.createObjectURL(file));
-      console.log(imagem);
+
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagemBase64(reader.result);
+      };
+      reader.readAsDataURL(file);
     }
   };
-
   const handleExcluir = () => {
-    const confirmar = window.confirm("Tem certeza que deseja excluir este produto?");
+    const confirmar = window.confirm(
+      "Tem certeza que deseja excluir este produto?"
+    );
     if (confirmar) {
       toast.success("Produto excluído com sucesso!", {
         position: "top-center",
@@ -43,6 +76,23 @@ export default function EdicaoProduto() {
     }
   };
 
+  const handleEditar = async () => {
+    const produto = {
+      nome: nome,
+      preco: preco,
+      descricao: descricao,
+      imagem: imagemBase64,
+      categoria_id: categoriaId,
+    };
+
+    try {
+      const resposta = await editarProduto(params.id, produto);
+
+      if (resposta.status === 200) {
+        toast.success(resposta.data.mensagem);
+      }
+    } catch (error) {}
+  };
 
   return (
     <div className="edicao-produto-container">
@@ -97,9 +147,25 @@ export default function EdicaoProduto() {
               onChange={(e) => setDescricao(e.target.value)}
             />
 
+            <select
+              name=""
+              id=""
+              value={categoriaId}
+              onChange={(e) => {
+                setCategoriaId(e.target.value);
+              }}
+            >
+              <option value="1">Alimentos</option>
+              <option value="2">Cuidados com a saúde</option>
+            </select>
+
             <div className="edicao-produto-buttons">
-              <button className="alterar">Alterar</button>
-              <button className="excluir" onClick={handleExcluir}>Excluir</button>
+              <button className="alterar" onClick={handleEditar}>
+                Alterar
+              </button>
+              <button className="excluir" onClick={handleExcluir}>
+                Excluir
+              </button>
             </div>
           </div>
         </div>

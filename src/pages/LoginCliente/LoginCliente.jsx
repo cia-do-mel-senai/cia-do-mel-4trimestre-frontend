@@ -1,25 +1,38 @@
 import "./LoginCliente.css";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "./LoginCliente.css";
 import { MdOutlineArrowBackIos } from "react-icons/md";
+import { logarUsuario } from "../../services/servicoUsuario.js";
+import { AuthContext } from "../../context/authContext.jsx";
 
 const LoginCliente = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const botaoLogin = () => {
+  const botaoLogin = async () => {
     if (email.trim() === "" || senha.trim() === "") {
       toast.dismiss();
       toast.error("Todos os campos são obrigatório");
       return;
     }
-    if (email === "erick@gmail.com" && senha === "123") {
-      navigate("/");
-    } else "E-mail ou senha inválidos";
+
+    const usuario = {
+      email: email,
+      senha: senha,
+    };
+
+    try {
+      const resposta = await logarUsuario(usuario);
+      const token = resposta.data.token;
+
+      login(token);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
