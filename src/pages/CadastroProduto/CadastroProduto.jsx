@@ -35,7 +35,7 @@ export default function CadastroProduto() {
     const produto = {
       nome: nome,
       preco: preco,
-      descricao: preco,
+      descricao: descricao,
       categoria_id: categoriaId,
       imagem: imagemBase64,
     };
