@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   editarProduto,
-  pegarProdutoPorId,
+  pegarProdutoPorId, excluirProduto,
 } from "../../services/servicoProduto";
 
 export default function EdicaoProduto() {
@@ -43,6 +43,48 @@ export default function EdicaoProduto() {
     listarProduto();
   }, []);
 
+const validarProduto = (produto) => {
+  if (!produto.nome.trim()) {
+    toast.error("O nome do produto é obrigatório.");
+    return false;
+  }
+  if (!isNaN(produto.nome.trim())) {
+    toast.error("O nome do produto não pode ser apenas números.");
+    return false;
+  }
+  if (produto.nome.trim().length < 3) {
+    toast.error("O nome do produto deve ter ao menos 3 caracteres.");
+    return false;
+  }
+  if (!produto.descricao.trim()) {
+    toast.error("A descrição é obrigatória.");
+    return false;
+  }
+  if (produto.descricao.trim().length < 10) {
+    toast.error("A descrição deve ter pelo menos 10 caracteres.");
+    return false;
+  }
+  if (!produto.preco || isNaN(produto.preco)) {
+    toast.error("O preço é obrigatório e deve ser um número.");
+    return false;
+  }
+  if (produto.preco < 0.01 || produto.preco > 1000000) {
+    toast.error("O preço deve estar entre R$ 0,01 e R$ 1.000.000,00.");
+    return false;
+  }
+  if (!produto.imagem || produto.imagem === "") {
+    toast.error("A imagem do produto é obrigatória.");
+    return false;
+  }
+  if (!produto.categoria_id || ![1, 2].includes(Number(produto.categoria_id))) {
+    toast.error("Selecione uma categoria válida.");
+    return false;
+  }
+
+  return true;
+};
+
+
   const handleImageClick = () => {
     inputRef.current?.click();
   };
@@ -60,21 +102,26 @@ export default function EdicaoProduto() {
     }
   };
 
-  const handleExcluir = () => {
-    const confirmar = window.confirm(
-      "Tem certeza que deseja excluir este produto?"
-    );
+  const handleExcluir = async () => {
+    const confirmar = window.confirm("Tem certeza que deseja excluir este produto?");
     if (confirmar) {
-      toast.success("Produto excluído com sucesso!", {
-        position: "top-center",
-        autoClose: 2000,
-      });
 
-      setNome("");
-      setPreco(0);
-      setDescricao("");
-      setImagem(null);
-      setPreviewUrl(null);
+      try {
+        const resposta = await excluirProduto(params.id);
+
+        if(resposta.status === 200) {
+          toast.success("Produto excluído com sucesso!", {
+            position: "top-center",
+            autoClose: 2000,
+        });
+      
+        setTimeout(() => {
+          navigate("/produtos")}, 2000);
+        }
+    } catch (error) {
+      toast.error("Erro ao excluir o produto.");
+      console.log(error);
+    }
     }
   };
 
@@ -87,13 +134,18 @@ export default function EdicaoProduto() {
       categoria_id: categoriaId,
     };
 
+    if (!validarProduto(produto)) return;
+
     try {
       const resposta = await editarProduto(params.id, produto);
 
       if (resposta.status === 200) {
         toast.success(resposta.data.mensagem);
       }
-    } catch (error) {}
+    } catch (error) {
+      toast.error("Erro ao editar o produto.");
+      console.log(error);
+    }
   };
 
   return (

@@ -31,6 +31,55 @@ export default function CadastroProduto() {
     }
   };
 
+  const validarProduto = (produto) => {
+    if (!produto.nome.trim()) {
+      toast.error("O nome do produto é obrigatório.");
+      return false;
+    }
+
+    if (!isNaN(produto.nome.trim())) {
+      toast.error("O nome do produto não pode ser apenas números.");
+      return false;
+    }
+
+    if (produto.nome.trim().length < 3) {
+      toast.error("O nome do produto deve ter ao menos 3 caracteres.");
+      return false;
+    }
+
+    if (!produto.descricao.trim()) {
+      toast.error("A descrição é obrigatória.");
+      return false;
+    }
+
+    if (produto.descricao.trim().length < 10) {
+      toast.error("A descrição deve ter pelo menos 10 caracteres.");
+      return false;
+    }
+
+    if (!produto.preco || isNaN(produto.preco)) {
+      toast.error("O preço é obrigatório e deve ser um número.");
+      return false;
+    }
+
+    if (produto.preco < 0.01 || produto.preco > 1000000) {
+      toast.error("O preço deve estar entre R$ 0,01 e R$ 1.000.000,00.");
+      return false;
+    }
+
+    if (!produto.imagem || produto.imagem === "") {
+      toast.error("A imagem do produto é obrigatória.");
+      return false;
+    }
+
+    if (!produto.categoria_id || ![1, 2].includes(Number(produto.categoria_id))) {
+      toast.error("Selecione uma categoria válida.");
+      return false;
+    }
+
+    return true;
+  };
+
   const adicionarProduto = async () => {
     if (
       nome.trim() === "" ||
@@ -50,6 +99,8 @@ export default function CadastroProduto() {
       categoria_id: categoriaId,
       imagem: imagemBase64,
     };
+
+    if (!validarProduto(produto)) return;
 
     try {
       const resposta = await cadastrarProduto(produto);
