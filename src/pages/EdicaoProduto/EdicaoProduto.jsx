@@ -4,7 +4,7 @@ import "./EdicaoProduto.css";
 import { useState, useRef, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   editarProduto,
   pegarProdutoPorId,
@@ -19,6 +19,7 @@ export default function EdicaoProduto() {
   const [previewUrl, setPreviewUrl] = useState(null);
   const inputRef = useRef(null);
   const params = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function listarProduto() {
@@ -58,6 +59,7 @@ export default function EdicaoProduto() {
       reader.readAsDataURL(file);
     }
   };
+
   const handleExcluir = () => {
     const confirmar = window.confirm(
       "Tem certeza que deseja excluir este produto?"

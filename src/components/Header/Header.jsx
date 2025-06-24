@@ -1,12 +1,13 @@
 import { Search, ShoppingCart } from "lucide-react";
 import "./Header.css";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../context/authContext";
 import { FaUserGear } from "react-icons/fa6";
 
 export default function Header() {
   const { usuario, sair } = useContext(AuthContext);
+  const [pesquisa, setPesquisa] = useState("");
   const usuarioLogado = !!usuario;
 
   const navigate = useNavigate();
@@ -20,15 +21,26 @@ export default function Header() {
       />
       <div className="header-search-container">
         <Search className="header-search-icon" />
+        {pesquisa && (
+          <span
+            className="clear-search"
+            onClick={() => {
+              setPesquisa("");
+              navigate("/catalogo"); // opcional: volta para catálogo sem pesquisa
+            }}
+          >
+            ×
+          </span>
+        )}
         <input
           type="text"
           className="header-search-bar"
           placeholder="ZzZzz......"
+          value={pesquisa}
+          onChange={(e) => setPesquisa(e.target.value)}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
-              navigate(
-                `/catalogo?pesquisa=${encodeURIComponent(e.target.value)}`
-              );
+              navigate(`/catalogo?pesquisa=${encodeURIComponent(pesquisa)}`);
             }
           }}
         />

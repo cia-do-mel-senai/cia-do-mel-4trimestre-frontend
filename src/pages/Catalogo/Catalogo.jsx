@@ -18,6 +18,7 @@ export default function Catalogo() {
 
   useEffect(() => {
     async function listarProdutos() {
+      console.log(usuario);
       try {
         const resposta = await pegarProdutos();
         if (resposta.status === 200) {

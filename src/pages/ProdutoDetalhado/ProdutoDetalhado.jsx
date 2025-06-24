@@ -6,6 +6,7 @@ import Footer from "../../components/Footer/Footer";
 import { MdOutlineArrowBackIos } from "react-icons/md";
 import { useNavigate, useParams } from "react-router-dom";
 import { pegarProdutoPorId } from "../../services/servicoProduto";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function ProdutoDetalhado() {
   const [nome, setNome] = useState("");
@@ -13,6 +14,7 @@ export default function ProdutoDetalhado() {
   const [descricao, setDescricao] = useState("");
   const [nota, setNota] = useState(0);
   const [imagem, setImagem] = useState(null);
+  const [id, setId] = useState(null);
   const [quantidade, setQuantidade] = useState(1);
   const navigate = useNavigate();
   const params = useParams();
@@ -29,6 +31,7 @@ export default function ProdutoDetalhado() {
         setDescricao(produto.descricao);
         setNota(5);
         setImagem(produto.imagem);
+        setId(produto.id);
       } catch (error) {}
     };
     listarProduto();
@@ -48,6 +51,36 @@ export default function ProdutoDetalhado() {
     }
 
     return estrelas;
+  };
+
+  const adicionarNoCarrinho = () => {
+    if (quantidade <= 0) {
+      toast.error("Por favor insira uma quantidade válida");
+      return;
+    }
+    const produtosNoCarrinho =
+      JSON.parse(localStorage.getItem("carrinho")) || [];
+
+    const produtoAdicionado = {
+      id: id,
+      nome: nome,
+      preco: preco,
+      quantidade: Number(quantidade),
+      imagem: imagem,
+    };
+
+    const indexProdutoExistente = produtosNoCarrinho.findIndex(
+      (produto) => produto.id === id
+    );
+
+    if (indexProdutoExistente !== -1) {
+      produtosNoCarrinho[indexProdutoExistente].quantidade += quantidade;
+    } else {
+      produtosNoCarrinho.push(produtoAdicionado);
+    }
+
+    localStorage.setItem("carrinho", JSON.stringify(produtosNoCarrinho));
+    toast.success("Produto adicionado ao carrinho!");
   };
 
   return (
@@ -74,13 +107,15 @@ export default function ProdutoDetalhado() {
               type="number"
               placeholder="Qtde:"
               value={quantidade}
-              onChange={(e) => setQuantidade(e.target.value)}
+              onChange={(e) => setQuantidade(Number(e.target.value))}
+              min={1}
             />
-            <button>Adicionar</button>
+            <button onClick={adicionarNoCarrinho}>Adicionar</button>
           </div>
         </div>
       </div>
       <Footer />
+      <ToastContainer position="top-center" />
     </div>
   );
 }

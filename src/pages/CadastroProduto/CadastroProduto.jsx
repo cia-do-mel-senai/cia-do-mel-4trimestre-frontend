@@ -32,6 +32,17 @@ export default function CadastroProduto() {
   };
 
   const adicionarProduto = async () => {
+    if (
+      nome.trim() === "" ||
+      Number(preco) < 0.1 ||
+      isNaN(
+        Number(preco) || ![1, 2].includes(categoriaId) || imagem.trim() === ""
+      )
+    ) {
+      toast.error("Preencha todas as informações.");
+      return;
+    }
+
     const produto = {
       nome: nome,
       preco: preco,

@@ -7,7 +7,7 @@ import CadastroCliente from "./pages/CadastroCliente/CadastroCliente";
 import LoginCliente from "./pages/LoginCliente/LoginCliente";
 import Carrinho from "./pages/Carrinho/Carrinho";
 import Pedidos from "./pages/Pedidos/Pedidos";
-import ProdutoDetalhado from "./pages/ProdutoDetalhado/ProdutoDetalhaDO";
+import ProdutoDetalhado from "./pages/ProdutoDetalhado/ProdutoDetalhado";
 import { AuthProvider } from "./context/authContext";
 
 function App() {
