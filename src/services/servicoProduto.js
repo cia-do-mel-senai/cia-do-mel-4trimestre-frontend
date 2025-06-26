@@ -10,3 +10,5 @@ export const editarProduto = (id, produto) =>
   api.put(`/produto/${id}`, produto);
 
 export const excluirProduto = (id) => api.delete(`/produto/${id}`);
+
+export const pegarUltimosProdutos = () => api.get("/produto/ultimos");

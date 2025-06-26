@@ -72,7 +72,10 @@ export default function CadastroProduto() {
       return false;
     }
 
-    if (!produto.categoria_id || ![1, 2].includes(Number(produto.categoria_id))) {
+    if (
+      !produto.categoria_id ||
+      ![1, 2].includes(Number(produto.categoria_id))
+    ) {
       toast.error("Selecione uma categoria válida.");
       return false;
     }
@@ -81,17 +84,6 @@ export default function CadastroProduto() {
   };
 
   const adicionarProduto = async () => {
-    if (
-      nome.trim() === "" ||
-      Number(preco) < 0.1 ||
-      isNaN(
-        Number(preco) || ![1, 2].includes(categoriaId) || imagem.trim() === ""
-      )
-    ) {
-      toast.error("Preencha todas as informações.");
-      return;
-    }
-
     const produto = {
       nome: nome,
       preco: preco,
@@ -101,9 +93,9 @@ export default function CadastroProduto() {
     };
 
     if (!validarProduto(produto)) return;
-
     try {
       const resposta = await cadastrarProduto(produto);
+
       if (resposta.status === 201) {
         toast.success(resposta.data.mensagem);
         setNome("");
@@ -116,7 +108,9 @@ export default function CadastroProduto() {
           inputRef.current.value = "";
         }
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

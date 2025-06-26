@@ -45,8 +45,6 @@ const CadastroCliente = () => {
     } catch (error) {
       console.log(error);
     }
-
-    console.log("Dados Cadastrados:", usuario);
   };
 
   return (
