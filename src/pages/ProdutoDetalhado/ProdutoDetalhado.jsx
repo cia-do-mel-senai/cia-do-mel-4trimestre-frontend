@@ -95,7 +95,7 @@ export default function ProdutoDetalhado() {
           <img src={imagem} alt="" />
           <div className="produto-detalhado-info">
             <h2>{nome}</h2>
-            <p>{descricao}</p>
+            <p className="produto-detalhado-descricao">{descricao}</p>
             <div style={{ display: "flex", gap: "4px", alignItems: "center" }}>
               {nota}
               {renderEstrelas()}

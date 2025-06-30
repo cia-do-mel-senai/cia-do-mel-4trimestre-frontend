@@ -79,15 +79,28 @@
   font-weight: bold;
 }
 .produto-detalhado-retornar {
-  position: absolute; 
-  top: 25px;         
-  left: 20px;         
-  font-size: 2em;     
-  color: #303030;;       
-  cursor: pointer;     
-  z-index: 10;       
+  position: absolute;
+  top: 25px;
+  left: 20px;
+  font-size: 2em;
+  color: #303030;
+  cursor: pointer;
+  z-index: 10;
 }
 
 .produto-detalhado-retornar :hover {
-   color: #cbc4c4;  
+  color: #cbc4c4;
+}
+.produto-detalhado-descricao {
+  height: 40%;
+  overflow-y: auto;
+}
+
+.produto-detalhado-descricao::-webkit-scrollbar {
+  width: 6px;
+}
+
+.produto-detalhado-descricao::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 10px;
 }
