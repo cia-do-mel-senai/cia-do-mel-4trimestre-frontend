@@ -43,6 +43,8 @@
 }
 .LandingPage-produto-cards {
   display: flex;
+  align-items: center;
+max-height: 150px;
   gap: 50px;
 }
 .LandingPage-body-card p {

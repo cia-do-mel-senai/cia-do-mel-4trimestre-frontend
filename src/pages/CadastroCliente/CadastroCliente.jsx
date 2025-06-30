@@ -41,9 +41,18 @@ const CadastroCliente = () => {
     };
 
     try {
-      criarUsuario(usuario);
+      const resposta = await criarUsuario(usuario);
+
+      if(resposta.status === 201){
+        toast.success("Cadastrado com sucesso!")
+        setTimeout(() => {
+          navigate("/login-cliente");
+        }, 2000);
+
+      }
     } catch (error) {
       console.log(error);
+      toast.error(error.response.data.error)
     }
   };
 
