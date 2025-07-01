@@ -46,10 +46,15 @@
 
 .pedidos::-webkit-scrollbar {
   width: 6px;
-  
 }
 
 .pedidos::-webkit-scrollbar-thumb {
   background-color: #ccc;
   border-radius: 10px;
+}
+
+.sem-pedidos {
+  font-size: 60px;
+  color: white;
+  opacity: 0.5;
 }

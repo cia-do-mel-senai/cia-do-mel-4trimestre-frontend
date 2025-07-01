@@ -1,14 +1,17 @@
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 import Header from "../../components/Header/Header";
 import "./ProdutoDetalhado.css";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Footer from "../../components/Footer/Footer";
 import { MdOutlineArrowBackIos } from "react-icons/md";
 import { useNavigate, useParams } from "react-router-dom";
 import { pegarProdutoPorId } from "../../services/servicoProduto";
 import { ToastContainer, toast } from "react-toastify";
+import { AuthContext } from "../../context/authContext";
 
 export default function ProdutoDetalhado() {
+  const { usuario } = useContext(AuthContext);
+  const usuarioLogado = !!usuario;
   const [nome, setNome] = useState("");
   const [preco, setPreco] = useState(0);
   const [descricao, setDescricao] = useState("");
@@ -54,6 +57,11 @@ export default function ProdutoDetalhado() {
   };
 
   const adicionarNoCarrinho = () => {
+    if (!usuarioLogado) {
+      navigate("/cadastro-cliente");
+      return;
+    }
+
     if (quantidade <= 0) {
       toast.error("Por favor insira uma quantidade válida");
       return;

@@ -33,13 +33,17 @@ export default function Pedidos() {
   };
 
   return (
-    <div className="pedidos-container" onClick={() => console.log(pedidos)}>
+    <div className="pedidos-container">
       <Header />
       <div className="pedidos-main">
         <div className="pedidos-body">
           <h2>Pedidos:</h2>
 
           <div className="pedidos">
+            {pedidos.length === 0 && (
+              <h3 className="sem-pedidos">Ainda não há pedidos</h3>
+            )}
+
             {pedidos.map((pedido, index) => {
               return (
                 <Pedido

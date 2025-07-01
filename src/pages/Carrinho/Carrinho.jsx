@@ -11,8 +11,11 @@ import { IoAddOutline } from "react-icons/io5";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { fazerPedido } from "../../services/servicoPedido";
+import { useNavigate } from "react-router-dom";
 
 export default function Carrinho() {
+  const navigate = useNavigate();
+
   const [produtos, setProdutos] = useState(() => {
     return JSON.parse(localStorage.getItem("carrinho")) || [];
   });
@@ -165,7 +168,7 @@ export default function Carrinho() {
           </div>
         </div>
       </div>
-      {mostrarModal && <ModalCarrinho onClose={() => setMostrarModal(false)} />}
+      {mostrarModal && <ModalCarrinho onClose={() => navigate("/pedidos")} />}
       <Footer />
       <ToastContainer />
     </div>

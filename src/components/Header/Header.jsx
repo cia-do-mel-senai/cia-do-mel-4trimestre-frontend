@@ -1,7 +1,7 @@
 import { Search, ShoppingCart } from "lucide-react";
 import "./Header.css";
-import { useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../context/authContext";
 import { FaUserGear } from "react-icons/fa6";
 
@@ -11,6 +11,14 @@ export default function Header() {
   const usuarioLogado = !!usuario;
 
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    const pesquisaParam = queryParams.get("pesquisa") || "";
+    setPesquisa(pesquisaParam);
+  }, [location.search]);
+
   return (
     <div className="header-container">
       <img
@@ -26,7 +34,7 @@ export default function Header() {
             className="clear-search"
             onClick={() => {
               setPesquisa("");
-              navigate("/catalogo"); // opcional: volta para catálogo sem pesquisa
+              navigate("/catalogo");
             }}
           >
             ×
@@ -84,7 +92,6 @@ export default function Header() {
         >
           Pedidos
         </p>
-
         <ShoppingCart
           className="header-button"
           onClick={() => {

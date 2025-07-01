@@ -24,7 +24,7 @@ function LandingPage() {
   }, []);
 
   return (
-    <div className="LandingPage-container" onClick={console.log(produtos)}>
+    <div className="LandingPage-container">
       <Header />
       <div className="LandingPage-content">
         <Carrossel />
