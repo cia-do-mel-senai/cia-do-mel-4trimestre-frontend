@@ -17,8 +17,8 @@ function App() {
     { path: "/produto/:id/editar", element: <EdicaoProduto /> },
     { path: "/produto/:id", element: <ProdutoDetalhado /> },
     { path: "/catalogo", element: <Catalogo /> },
-    { path: "/cadastro-cliente", element: <CadastroCliente /> },
-    { path: "/login-cliente", element: <LoginCliente /> },
+    { path: "/cadastro", element: <CadastroCliente /> },
+    { path: "/login", element: <LoginCliente /> },
     { path: "/carrinho", element: <Carrinho /> },
     { path: "/pedidos", element: <Pedidos /> },
   ]);

@@ -1,54 +1,24 @@
-import { useEffect, useState } from "react";
-import CardProduto from "../../components/CardProduto/CardProduto";
-import Carrossel from "../../components/Carrossel/Carrossel";
-import Footer from "../../components/Footer/Footer";
-import Header from "../../components/Header/Header";
+import { useNavigate } from "react-router-dom";
 import "./LandingPage.css";
-import { pegarUltimosProdutos } from "../../services/servicoProduto";
 
 function LandingPage() {
-  const [produtos, setProdutos] = useState([]);
-
-  useEffect(() => {
-    async function listarProdutos() {
-      try {
-        const resposta = await pegarUltimosProdutos();
-        if (resposta.status === 200) {
-          setProdutos(resposta.data);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    listarProdutos();
-  }, []);
+  const navigate = useNavigate();
 
   return (
     <div className="LandingPage-container">
-      <Header />
-      <div className="LandingPage-content">
-        <Carrossel />
-
-        <div className="LandingPage-body-card">
-          <p>Mais Vendidos</p>
-
-          <div className="LandingPage-produto-cards">
-            {produtos.map((produto, index) => {
-              return (
-                <CardProduto
-                  imagem={produto.imagem}
-                  nome={produto.nome}
-                  preco={Number(produto.preco)}
-                  key={index}
-                  nota={5}
-                  id={produto.id}
-                />
-              );
-            })}
-          </div>
-        </div>
+      <div className="LandingPage-header">
+        <img src="/logo.svg" className="LandingPage-logo" />
       </div>
-      <Footer />
+
+      <div className="LandingPage-content">
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius
+          suscipit in voluptatibus exercitationem nulla deserunt sequi,
+          temporibus, voluptas distinctio quam alias esse neque amet accusamus
+          odit rerum quaerat illum nobis?
+        </p>
+        <button onClick={() => navigate("/login")}>ACESSE</button>
+      </div>
     </div>
   );
 }
