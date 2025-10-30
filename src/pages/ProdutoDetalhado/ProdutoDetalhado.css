@@ -1,106 +1,126 @@
 .produto-detalhado-container {
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
+
 .produto-detalhado-body {
   flex-grow: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: auto;
-  background: #ffd900;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 217, 0, 1) 0%,
-    rgba(255, 128, 0, 1) 100%
-  );
+  background-color: #282828;
+  padding: 3rem 1rem;
   position: relative;
 }
-.produto-detalhado {
+
+.produto-detalhado-card {
   display: flex;
+  flex-direction: row;
+  gap: 3rem;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   width: 1200px;
-  height: 550px;
-  border-radius: 50px;
-  background-color: rgba(0, 0, 0, 0.6);
-}
-.produto-detalhado img {
-  width: 40%;
-  max-height: 80%;
-  border-radius: 30px;
-}
-.produto-detalhado-info {
-  width: 50%;
-  height: 80%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  color: white;
-  font-size: 26px;
-  justify-content: space-between;
-}
-.produto-detalhado-info p,
-.produto-detalhado-info h2 {
-  margin: 0;
-  text-align: center;
-}
-.produto-detalhado-info input {
-  padding: 4px;
-  border-radius: 8px;
-  border: 2px #c6c6c6 solid;
-  display: flex;
-  text-align: center;
-  font-size: 16px;
-}
-.produto-detalhado-info button {
-  width: 200px;
-  height: 50px;
-  border: 3px black;
-  background-color: black;
-  border-radius: 16px;
-  cursor: pointer;
-  color: white;
-  font-weight: bolder;
-  font-size: 24px;
-  margin-top: 10px;
+  max-width: 95%;
+  border-radius: 40px;
+  background: linear-gradient(145deg, #1f1f1f, #2c2c2c);
+  padding: 3rem;
+  box-shadow: 0 0 20px rgba(255, 212, 69, 0.2);
+  color: #fff;
+  transition: transform 0.2s;
 }
 
-.produto-detalhado-info button:hover {
-  background-color: #1e1d1d;
+.produto-detalhado-card img {
+  width: 45%;
+  max-height: 500px;
+  border-radius: 25px;
+  object-fit: cover;
+}
+
+.produto-detalhado-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  width: 50%;
+}
+
+.produto-detalhado-info h1 {
+  font-size: 2.2rem;
+  color: rgb(255, 212, 69);
+  margin-bottom: 0.5rem;
 }
 
 .produto-detalhado-preco {
-  font-size: 32px;
+  font-size: 1.8rem;
   font-weight: bold;
-}
-.produto-detalhado-retornar {
-  position: absolute;
-  top: 25px;
-  left: 20px;
-  font-size: 2em;
-  color: #303030;
-  cursor: pointer;
-  z-index: 10;
+  color: #fff;
 }
 
-.produto-detalhado-retornar :hover {
-  color: #cbc4c4;
-}
 .produto-detalhado-descricao {
-  height: 40%;
+  font-size: 1.1rem;
+  color: #d6d6d6;
+  line-height: 1.5;
+  text-align: justify;
+  max-height: 140px;
   overflow-y: auto;
 }
 
-.produto-detalhado-descricao::-webkit-scrollbar {
-  width: 6px;
+.produto-detalhado-especificacoes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  padding: 1rem 1.5rem;
+  font-size: 1.05rem;
 }
 
-.produto-detalhado-descricao::-webkit-scrollbar-thumb {
-  background-color: #ccc;
-  border-radius: 10px;
+.produto-detalhado-especificacoes span {
+  color: rgb(255, 212, 69);
+  font-weight: bold;
+}
+
+.produto-detalhado-info button {
+  width: 250px;
+  height: 55px;
+  border: none;
+  border-radius: 15px;
+  background-color: rgb(255, 212, 69);
+  color: #000;
+  font-size: 1.3rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 1rem;
+  align-self: center;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.produto-detalhado-info button:hover {
+  background-color: #ffe678;
+  transform: scale(1.03);
+}
+
+.produto-detalhado-retornar {
+  position: absolute;
+  top: 30px;
+  left: 20px;
+  font-size: 2.3em;
+  color: #f1f1f1;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.produto-detalhado-retornar:hover {
+  color: rgb(255, 212, 69);
+}
+
+.produto-detalhado-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  height: 100vh;
+  font-size: 1.5rem;
 }

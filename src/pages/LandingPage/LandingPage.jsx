@@ -1,14 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import "./LandingPage.css";
+import Header from "../../components/Header/Header";
 
 function LandingPage() {
   const navigate = useNavigate();
 
   return (
     <div className="LandingPage-container">
-      <div className="LandingPage-header">
-        <img src="/logo.svg" className="LandingPage-logo" />
-      </div>
+      <Header />
 
       <div className="LandingPage-content">
         <p>

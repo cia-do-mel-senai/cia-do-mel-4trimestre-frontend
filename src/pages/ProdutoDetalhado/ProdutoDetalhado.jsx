@@ -1,24 +1,13 @@
-import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
+import { MdOutlineArrowBackIos } from "react-icons/md";
 import Header from "../../components/Header/Header";
 import "./ProdutoDetalhado.css";
-import { useContext, useEffect, useState } from "react";
-import Footer from "../../components/Footer/Footer";
-import { MdOutlineArrowBackIos } from "react-icons/md";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { pegarProdutoPorId } from "../../services/servicoProduto";
 import { ToastContainer, toast } from "react-toastify";
-import { AuthContext } from "../../context/authContext";
 
 export default function ProdutoDetalhado() {
-  const { usuario } = useContext(AuthContext);
-  const usuarioLogado = !!usuario;
-  const [nome, setNome] = useState("");
-  const [preco, setPreco] = useState(0);
-  const [descricao, setDescricao] = useState("");
-  const [nota, setNota] = useState(0);
-  const [imagem, setImagem] = useState(null);
-  const [id, setId] = useState(null);
-  const [quantidade, setQuantidade] = useState(1);
+  const [produto, setProduto] = useState(null);
   const navigate = useNavigate();
   const params = useParams();
 
@@ -26,70 +15,25 @@ export default function ProdutoDetalhado() {
     const listarProduto = async () => {
       try {
         const resposta = await pegarProdutoPorId(params.id);
-
-        const produto = resposta.data;
-
-        setNome(produto.nome);
-        setPreco(Number(produto.preco));
-        setDescricao(produto.descricao);
-        setNota(5);
-        setImagem(produto.imagem);
-        setId(produto.id);
-      } catch (error) {}
+        setProduto(resposta.data);
+      } catch (error) {
+        toast.error("Erro ao carregar produto.");
+      }
     };
     listarProduto();
-  }, []);
+  }, [params.id]);
 
-  const renderEstrelas = () => {
-    const estrelas = [];
-
-    for (let i = 1; i <= 5; i++) {
-      if (nota >= i) {
-        estrelas.push(<FaStar key={i} color="yellow" size={40} />);
-      } else if (nota >= i - 0.5) {
-        estrelas.push(<FaStarHalfAlt key={i} color="yellow" size={40} />);
-      } else {
-        estrelas.push(<FaRegStar key={i} color="yellow" size={40} />);
-      }
-    }
-
-    return estrelas;
+  const fazerPedido = () => {
+    toast.success("Pedido realizado com sucesso!");
   };
 
-  const adicionarNoCarrinho = () => {
-    if (!usuarioLogado) {
-      navigate("/cadastro-cliente");
-      return;
-    }
-
-    if (quantidade <= 0) {
-      toast.error("Por favor insira uma quantidade válida");
-      return;
-    }
-    const produtosNoCarrinho =
-      JSON.parse(localStorage.getItem("carrinho")) || [];
-
-    const produtoAdicionado = {
-      id: id,
-      nome: nome,
-      preco: preco,
-      quantidade: Number(quantidade),
-      imagem: imagem,
-    };
-
-    const indexProdutoExistente = produtosNoCarrinho.findIndex(
-      (produto) => produto.id === id
+  if (!produto) {
+    return (
+      <div className="produto-detalhado-loading">
+        <p>Carregando produto...</p>
+      </div>
     );
-
-    if (indexProdutoExistente !== -1) {
-      produtosNoCarrinho[indexProdutoExistente].quantidade += quantidade;
-    } else {
-      produtosNoCarrinho.push(produtoAdicionado);
-    }
-
-    localStorage.setItem("carrinho", JSON.stringify(produtosNoCarrinho));
-    toast.success("Produto adicionado ao carrinho!");
-  };
+  }
 
   return (
     <div className="produto-detalhado-container">
@@ -99,30 +43,38 @@ export default function ProdutoDetalhado() {
           className="produto-detalhado-retornar"
           onClick={() => navigate(-1)}
         />
-        <div className="produto-detalhado">
-          <img src={imagem} alt="" />
+        <div className="produto-detalhado-card">
+          <img src={produto.imagem} alt={produto.nome} />
           <div className="produto-detalhado-info">
-            <h2>{nome}</h2>
-            <p className="produto-detalhado-descricao">{descricao}</p>
-            <div style={{ display: "flex", gap: "4px", alignItems: "center" }}>
-              {nota}
-              {renderEstrelas()}
-            </div>
+            <h1>{produto.nome}</h1>
             <p className="produto-detalhado-preco">
-              R$ {Number(preco).toFixed(2)}
+              R$ {Number(produto.preco).toFixed(2)}
             </p>
-            <input
-              type="number"
-              placeholder="Qtde:"
-              value={quantidade}
-              onChange={(e) => setQuantidade(Number(e.target.value))}
-              min={1}
-            />
-            <button onClick={adicionarNoCarrinho}>Adicionar</button>
+            <p className="produto-detalhado-descricao">{produto.descricao}</p>
+
+            <div className="produto-detalhado-especificacoes">
+              <div>
+                <span>Tamanho:</span> {produto.tamanho}
+              </div>
+              <div>
+                <span>Rótulo:</span> {produto.rotulo}
+              </div>
+              <div>
+                <span>Tipo de embalagem:</span> {produto.tipo_embalagem}
+              </div>
+              <div>
+                <span>Cor da tampa:</span> {produto.cor_tampa}
+              </div>
+              <div>
+                <span>Acabamento da superfície:</span>{" "}
+                {produto.acabamento_superficie}
+              </div>
+            </div>
+
+            <button onClick={fazerPedido}>Fazer Pedido</button>
           </div>
         </div>
       </div>
-      <Footer />
       <ToastContainer position="top-center" />
     </div>
   );

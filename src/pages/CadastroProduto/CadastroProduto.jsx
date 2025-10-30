@@ -1,115 +1,66 @@
-import { Import } from "lucide-react";
-import Header from "../../components/Header/Header";
 import "./CadastroProduto.css";
-import { useState, useRef } from "react";
-import { cadastrarProduto } from "../../services/servicoProduto";
-import { toast, ToastContainer } from "react-toastify";
+import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import Header from "../../components/Header/Header.jsx";
+import { cadastrarProduto } from "../../services/servicoProduto.js";
 
 export default function CadastroProduto() {
   const [nome, setNome] = useState("");
-  const [preco, setPreco] = useState(0);
+  const [preco, setPreco] = useState("");
   const [descricao, setDescricao] = useState("");
-  const [categoriaId, setCategoriaId] = useState(1);
-  const [imagemBase64, setImagemBase64] = useState("");
-  const [previewUrl, setPreviewUrl] = useState(null);
-  const inputRef = useRef(null);
+  const [tamanho, setTamanho] = useState("");
+  const [rotulo, setRotulo] = useState("");
+  const [tipoEmbalagem, setTipoEmbalagem] = useState("");
+  const [corTampa, setCorTampa] = useState("");
+  const [acabamento, setAcabamento] = useState("");
+  const [imagem, setImagem] = useState(null);
 
-  const handleImageClick = () => {
-    inputRef.current?.click();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (
+      !nome ||
+      !preco ||
+      !tamanho ||
+      !rotulo ||
+      !tipoEmbalagem ||
+      !corTampa ||
+      !acabamento ||
+      !imagem
+    ) {
+      toast.error("Preencha todos os campos obrigatórios!");
+      return;
+    }
+
+    const produto = {
+      nome,
+      preco,
+      descricao,
+      tamanho,
+      rotulo,
+      tipo_embalagem: tipoEmbalagem,
+      cor_tampa: corTampa,
+      acabamento_superficie: acabamento,
+      imagem,
+    };
+
+    try {
+      const resposta = await cadastrarProduto(produto);
+
+      if (resposta.status === 201) {
+        toast.success("Cadastrado com sucesso!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setPreviewUrl(URL.createObjectURL(file));
-
       const reader = new FileReader();
-      reader.onloadend = () => {
-        setImagemBase64(reader.result);
-      };
+      reader.onload = () => setImagem(reader.result);
       reader.readAsDataURL(file);
-    }
-  };
-
-  const validarProduto = (produto) => {
-    if (!produto.nome.trim()) {
-      toast.error("O nome do produto é obrigatório.");
-      return false;
-    }
-
-    if (!isNaN(produto.nome.trim())) {
-      toast.error("O nome do produto não pode ser apenas números.");
-      return false;
-    }
-
-    if (produto.nome.trim().length < 3) {
-      toast.error("O nome do produto deve ter ao menos 3 caracteres.");
-      return false;
-    }
-
-    if (!produto.descricao.trim()) {
-      toast.error("A descrição é obrigatória.");
-      return false;
-    }
-
-    if (produto.descricao.trim().length < 10) {
-      toast.error("A descrição deve ter pelo menos 10 caracteres.");
-      return false;
-    }
-
-    if (!produto.preco || isNaN(produto.preco)) {
-      toast.error("O preço é obrigatório e deve ser um número.");
-      return false;
-    }
-
-    if (produto.preco < 0.01 || produto.preco > 1000000) {
-      toast.error("O preço deve estar entre R$ 0,01 e R$ 1.000.000,00.");
-      return false;
-    }
-
-    if (!produto.imagem || produto.imagem === "") {
-      toast.error("A imagem do produto é obrigatória.");
-      return false;
-    }
-
-    if (
-      !produto.categoria_id ||
-      ![1, 2].includes(Number(produto.categoria_id))
-    ) {
-      toast.error("Selecione uma categoria válida.");
-      return false;
-    }
-
-    return true;
-  };
-
-  const adicionarProduto = async () => {
-    const produto = {
-      nome: nome,
-      preco: preco,
-      descricao: descricao,
-      categoria_id: categoriaId,
-      imagem: imagemBase64,
-    };
-
-    if (!validarProduto(produto)) return;
-    try {
-      const resposta = await cadastrarProduto(produto);
-
-      if (resposta.status === 201) {
-        toast.success(resposta.data.mensagem);
-        setNome("");
-        setPreco(0);
-        setDescricao("");
-        setCategoriaId(1);
-        setImagemBase64("");
-        setPreviewUrl(null);
-        if (inputRef.current) {
-          inputRef.current.value = "";
-        }
-      }
-    } catch (error) {
-      console.log(error);
     }
   };
 
@@ -117,76 +68,137 @@ export default function CadastroProduto() {
     <div className="cadastro-produto-container">
       <Header />
       <div className="cadastro-produto-body">
-        <div className="cadastro-produto-form">
-          <div
-            className="register-product-import-icon"
-            onClick={handleImageClick}
-          >
-            {previewUrl ? (
-              <img
-                src={previewUrl}
-                alt="Prévia"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  borderRadius: "inherit",
-                }}
-              />
-            ) : (
-              <Import style={{ width: "100%", height: "100%" }} />
-            )}
-          </div>
-
-          <input
-            type="file"
-            accept="image/*"
-            ref={inputRef}
-            style={{ display: "none" }}
-            onChange={handleImageChange}
-          />
-
+        <form className="cadastro-produto-form" onSubmit={handleSubmit}>
           <div className="cadastro-produto-inputs">
-            <h2>Cadastro de produto</h2>
-            <label htmlFor="nome">Nome:</label>
-            <input
-              type="text"
-              id="nome"
-              value={nome}
-              onChange={(e) => setNome(e.target.value)}
-            />
+            <h2>Cadastrar Produto</h2>
 
-            <label htmlFor="preco">Preço:</label>
-            <input
-              type="number"
-              id="preco"
-              value={preco}
-              onChange={(e) => setPreco(Number(e.target.value))}
-            />
-            <label htmlFor="descricao">Descrição:</label>
-            <textarea
-              id="descricao"
-              value={descricao}
-              onChange={(e) => setDescricao(e.target.value)}
-            />
-
-            <select
-              name=""
-              id=""
-              value={categoriaId}
-              onChange={(e) => {
-                setCategoriaId(e.target.value);
-              }}
+            <div
+              className="register-product-import-icon"
+              onClick={() => document.getElementById("imagemInput").click()}
             >
-              <option value="1">Alimentos</option>
-              <option value="2">Cuidados com a saúde</option>
-            </select>
+              {imagem ? (
+                <img
+                  src={imagem}
+                  alt="Preview"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    borderRadius: "20px",
+                    objectFit: "cover",
+                  }}
+                />
+              ) : (
+                "Clique para adicionar imagem"
+              )}
+              <input
+                type="file"
+                id="imagemInput"
+                accept="image/*"
+                onChange={handleImageChange}
+                style={{ display: "none" }}
+              />
+            </div>
 
-            <button onClick={adicionarProduto}>Adicionar</button>
+            <div>
+              <label>Nome</label>
+              <input
+                type="text"
+                value={nome}
+                onChange={(e) => setNome(e.target.value)}
+                placeholder="Nome do produto"
+              />
+            </div>
+
+            <div>
+              <label>Preço</label>
+              <input
+                type="number"
+                step="0.01"
+                value={preco}
+                onChange={(e) => setPreco(e.target.value)}
+                placeholder="Preço"
+              />
+            </div>
+
+            <div>
+              <label>Descrição</label>
+              <textarea
+                value={descricao}
+                onChange={(e) => setDescricao(e.target.value)}
+                placeholder="Descrição do produto"
+              ></textarea>
+            </div>
+
+            <div>
+              <label>Tamanho</label>
+              <select
+                value={tamanho}
+                onChange={(e) => setTamanho(e.target.value)}
+              >
+                <option value="">Selecione</option>
+                <option value="Pequeno">Pequeno</option>
+                <option value="Médio">Médio</option>
+                <option value="Grande">Grande</option>
+              </select>
+            </div>
+
+            <div>
+              <label>Rótulo</label>
+              <select
+                value={rotulo}
+                onChange={(e) => setRotulo(e.target.value)}
+              >
+                <option value="">Selecione</option>
+                <option value="Sem rótulo">Sem rótulo</option>
+                <option value="Padrão">Padrão</option>
+                <option value="Personalizado">Personalizado</option>
+              </select>
+            </div>
+
+            <div>
+              <label>Tipo de Embalagem</label>
+              <select
+                value={tipoEmbalagem}
+                onChange={(e) => setTipoEmbalagem(e.target.value)}
+              >
+                <option value="">Selecione</option>
+                <option value="Vidro">Vidro</option>
+                <option value="Plástico">Plástico</option>
+                <option value="Acrílico">Acrílico</option>
+              </select>
+            </div>
+
+            <div>
+              <label>Cor da Tampa</label>
+              <select
+                value={corTampa}
+                onChange={(e) => setCorTampa(e.target.value)}
+              >
+                <option value="">Selecione</option>
+                <option value="Verde">Verde</option>
+                <option value="Laranja">Laranja</option>
+                <option value="Roxo">Roxo</option>
+              </select>
+            </div>
+
+            <div>
+              <label>Acabamento da Superfície</label>
+              <select
+                value={acabamento}
+                onChange={(e) => setAcabamento(e.target.value)}
+              >
+                <option value="">Selecione</option>
+                <option value="Fosco">Fosco</option>
+                <option value="Brilhante">Brilhante</option>
+                <option value="Texturizado">Texturizado</option>
+              </select>
+            </div>
+
+            <button type="submit">Cadastrar</button>
           </div>
-        </div>
+        </form>
       </div>
-      <ToastContainer position="top-center" />
+      <ToastContainer position="top-center" limit={1} />
     </div>
   );
 }

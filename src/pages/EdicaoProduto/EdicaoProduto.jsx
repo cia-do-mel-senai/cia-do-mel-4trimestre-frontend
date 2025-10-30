@@ -15,9 +15,14 @@ export default function EdicaoProduto() {
   const [nome, setNome] = useState("");
   const [preco, setPreco] = useState(0);
   const [descricao, setDescricao] = useState("");
-  const [categoriaId, setCategoriaId] = useState(1);
+  const [tamanho, setTamanho] = useState("");
+  const [rotulo, setRotulo] = useState("");
+  const [tipoEmbalagem, setTipoEmbalagem] = useState("");
+  const [corTampa, setCorTampa] = useState("");
+  const [acabamento, setAcabamento] = useState("");
   const [imagemBase64, setImagemBase64] = useState("");
   const [previewUrl, setPreviewUrl] = useState(null);
+
   const inputRef = useRef(null);
   const params = useParams();
   const navigate = useNavigate();
@@ -26,102 +31,100 @@ export default function EdicaoProduto() {
     async function listarProduto() {
       try {
         const resposta = await pegarProdutoPorId(params.id);
-
         if (resposta.status === 200) {
           const produto = resposta.data;
           setNome(produto.nome);
           setPreco(produto.preco);
           setDescricao(produto.descricao);
+          setTamanho(produto.tamanho || "");
+          setRotulo(produto.rotulo || "");
+          setTipoEmbalagem(produto.tipo_embalagem || "");
+          setCorTampa(produto.cor_tampa || "");
+          setAcabamento(produto.acabamento_superficie || "");
           setImagemBase64(produto.imagem);
           setPreviewUrl(produto.imagem);
-          setCategoriaId(produto.categoria_id);
         }
       } catch (error) {
         console.log(error);
       }
     }
-
     listarProduto();
   }, []);
+
+  const handleImageClick = () => inputRef.current?.click();
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setPreviewUrl(URL.createObjectURL(file));
+      const reader = new FileReader();
+      reader.onloadend = () => setImagemBase64(reader.result);
+      reader.readAsDataURL(file);
+    }
+  };
 
   const validarProduto = (produto) => {
     if (!produto.nome.trim()) {
       toast.error("O nome do produto é obrigatório.");
       return false;
     }
-    if (!isNaN(produto.nome.trim())) {
-      toast.error("O nome do produto não pode ser apenas números.");
-      return false;
-    }
-    if (produto.nome.trim().length < 3) {
-      toast.error("O nome do produto deve ter ao menos 3 caracteres.");
-      return false;
-    }
     if (!produto.descricao.trim()) {
       toast.error("A descrição é obrigatória.");
-      return false;
-    }
-    if (produto.descricao.trim().length < 10) {
-      toast.error("A descrição deve ter pelo menos 10 caracteres.");
       return false;
     }
     if (!produto.preco || isNaN(produto.preco)) {
       toast.error("O preço é obrigatório e deve ser um número.");
       return false;
     }
-    if (produto.preco < 0.01 || produto.preco > 1000000) {
-      toast.error("O preço deve estar entre R$ 0,01 e R$ 1.000.000,00.");
-      return false;
-    }
-    if (!produto.imagem || produto.imagem === "") {
+    if (!produto.imagem) {
       toast.error("A imagem do produto é obrigatória.");
       return false;
     }
     if (
-      !produto.categoria_id ||
-      ![1, 2].includes(Number(produto.categoria_id))
+      !produto.tamanho ||
+      !produto.rotulo ||
+      !produto.tipo_embalagem ||
+      !produto.cor_tampa ||
+      !produto.acabamento_superficie
     ) {
-      toast.error("Selecione uma categoria válida.");
+      toast.error("Selecione todas as opções de produto.");
       return false;
     }
-
     return true;
   };
 
-  const handleImageClick = () => {
-    inputRef.current?.click();
-  };
+  const handleEditar = async () => {
+    const produto = {
+      nome,
+      preco,
+      descricao,
+      imagem: imagemBase64,
+      tamanho,
+      rotulo,
+      tipo_embalagem: tipoEmbalagem,
+      cor_tampa: corTampa,
+      acabamento_superficie: acabamento,
+    };
+    if (!validarProduto(produto)) return;
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setPreviewUrl(URL.createObjectURL(file));
-
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImagemBase64(reader.result);
-      };
-      reader.readAsDataURL(file);
+    try {
+      const resposta = await editarProduto(params.id, produto);
+      if (resposta.status === 200) {
+        toast.success("Produto atualizado com sucesso!");
+      }
+    } catch (error) {
+      toast.error("Erro ao editar o produto.");
+      console.log(error);
     }
   };
 
   const handleExcluir = async () => {
-    const confirmar = window.confirm(
-      "Tem certeza que deseja excluir este produto?"
-    );
-    if (confirmar) {
+    if (window.confirm("Tem certeza que deseja excluir este produto?")) {
       try {
         const resposta = await excluirProduto(params.id);
-
         if (resposta.status === 200) {
-          toast.success("Produto excluído com sucesso!", {
-            position: "top-center",
-            autoClose: 2000,
-          });
-
-          setTimeout(() => {
-            navigate("/catalogo");
-          }, 2000);
+          toast.success("Produto excluído com sucesso!");
+          setTimeout(() => navigate("/catalogo"), 2000);
         }
       } catch (error) {
         toast.error("Erro ao excluir o produto.");
@@ -130,104 +133,145 @@ export default function EdicaoProduto() {
     }
   };
 
-  const handleEditar = async () => {
-    const produto = {
-      nome: nome,
-      preco: preco,
-      descricao: descricao,
-      imagem: imagemBase64,
-      categoria_id: categoriaId,
-    };
-
-    if (!validarProduto(produto)) return;
-
-    try {
-      const resposta = await editarProduto(params.id, produto);
-
-      if (resposta.status === 200) {
-        toast.success(resposta.data.mensagem);
-      }
-    } catch (error) {
-      toast.error("Erro ao editar o produto.");
-      console.log(error);
-    }
-  };
-
   return (
     <div className="edicao-produto-container">
       <Header />
       <div className="edicao-produto-body">
-        <div className="edicao-produto-form">
-          <div className="edit-product-import-icon" onClick={handleImageClick}>
-            {previewUrl ? (
-              <img
-                src={previewUrl}
-                alt="Prévia"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  borderRadius: "inherit",
-                }}
-              />
-            ) : (
-              <Import style={{ width: "100%", height: "100%" }} />
-            )}
-          </div>
-
-          <input
-            type="file"
-            accept="image/*"
-            ref={inputRef}
-            style={{ display: "none" }}
-            onChange={handleImageChange}
-          />
-
+        <form
+          className="edicao-produto-form"
+          onSubmit={(e) => e.preventDefault()}
+        >
           <div className="edicao-produto-inputs">
-            <h2>Edição de produto</h2>
-            <label htmlFor="nome">Nome:</label>
-            <input
-              type="text"
-              id="nome"
-              value={nome}
-              onChange={(e) => setNome(e.target.value)}
-            />
-            <label htmlFor="preco">Preço:</label>
-            <input
-              type="number"
-              id="preco"
-              value={preco}
-              onChange={(e) => setPreco(Number(e.target.value))}
-            />
-            <label htmlFor="descricao">Descrição:</label>
-            <textarea
-              id="descricao"
-              value={descricao}
-              onChange={(e) => setDescricao(e.target.value)}
-            />
+            <h2>Edição de Produto</h2>
 
-            <select
-              name=""
-              id=""
-              value={categoriaId}
-              onChange={(e) => {
-                setCategoriaId(e.target.value);
-              }}
+            <div
+              className="register-product-import-icon"
+              onClick={handleImageClick}
             >
-              <option value="1">Alimentos</option>
-              <option value="2">Cuidados com a saúde</option>
-            </select>
+              {previewUrl ? (
+                <img
+                  src={previewUrl}
+                  alt="Preview"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    borderRadius: "20px",
+                    objectFit: "cover",
+                  }}
+                />
+              ) : (
+                <Import style={{ width: "50%", height: "50%" }} />
+              )}
+              <input
+                type="file"
+                accept="image/*"
+                ref={inputRef}
+                style={{ display: "none" }}
+                onChange={handleImageChange}
+              />
+            </div>
+
+            <div>
+              <label>Nome</label>
+              <input
+                type="text"
+                value={nome}
+                onChange={(e) => setNome(e.target.value)}
+              />
+            </div>
+
+            <div>
+              <label>Preço</label>
+              <input
+                type="number"
+                value={preco}
+                onChange={(e) => setPreco(Number(e.target.value))}
+              />
+            </div>
+
+            <div>
+              <label>Descrição</label>
+              <textarea
+                value={descricao}
+                onChange={(e) => setDescricao(e.target.value)}
+              />
+            </div>
+
+            <div>
+              <label>Tamanho</label>
+              <select
+                value={tamanho}
+                onChange={(e) => setTamanho(e.target.value)}
+              >
+                <option value="">Selecione</option>
+                <option value="Pequeno">Pequeno</option>
+                <option value="Médio">Médio</option>
+                <option value="Grande">Grande</option>
+              </select>
+            </div>
+
+            <div>
+              <label>Rótulo</label>
+              <select
+                value={rotulo}
+                onChange={(e) => setRotulo(e.target.value)}
+              >
+                <option value="">Selecione</option>
+                <option value="Sem rótulo">Sem rótulo</option>
+                <option value="Padrão">Padrão</option>
+                <option value="Personalizado">Personalizado</option>
+              </select>
+            </div>
+
+            <div>
+              <label>Tipo de Embalagem</label>
+              <select
+                value={tipoEmbalagem}
+                onChange={(e) => setTipoEmbalagem(e.target.value)}
+              >
+                <option value="">Selecione</option>
+                <option value="Vidro">Vidro</option>
+                <option value="Plástico">Plástico</option>
+                <option value="Acrílico">Acrílico</option>
+              </select>
+            </div>
+
+            <div>
+              <label>Cor da Tampa</label>
+              <select
+                value={corTampa}
+                onChange={(e) => setCorTampa(e.target.value)}
+              >
+                <option value="">Selecione</option>
+                <option value="Verde">Verde</option>
+                <option value="Laranja">Laranja</option>
+                <option value="Roxo">Roxo</option>
+              </select>
+            </div>
+
+            <div>
+              <label>Acabamento da Superfície</label>
+              <select
+                value={acabamento}
+                onChange={(e) => setAcabamento(e.target.value)}
+              >
+                <option value="">Selecione</option>
+                <option value="Fosco">Fosco</option>
+                <option value="Brilhante">Brilhante</option>
+                <option value="Texturizado">Texturizado</option>
+              </select>
+            </div>
 
             <div className="edicao-produto-buttons">
-              <button className="alterar" onClick={handleEditar}>
+              <button type="button" className="alterar" onClick={handleEditar}>
                 Alterar
               </button>
-              <button className="excluir" onClick={handleExcluir}>
+              <button type="button" className="excluir" onClick={handleExcluir}>
                 Excluir
               </button>
             </div>
           </div>
-        </div>
+        </form>
       </div>
       <ToastContainer position="top-center" autoClose={3000} />
     </div>
