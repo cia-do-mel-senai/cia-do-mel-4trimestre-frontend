@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { pegarProdutoPorId } from "../../services/servicoProduto";
 import { ToastContainer, toast } from "react-toastify";
+import { fazerPedido } from "../../services/servicoPedido";
 
 export default function ProdutoDetalhado() {
   const [produto, setProduto] = useState(null);
@@ -23,8 +24,17 @@ export default function ProdutoDetalhado() {
     listarProduto();
   }, [params.id]);
 
-  const fazerPedido = () => {
-    toast.success("Pedido realizado com sucesso!");
+  const handlePedido = async () => {
+    try {
+      const response = await fazerPedido({
+        quantidade: 50,
+        produtoNome: produto.nome,
+      });
+      if (response.status === 201) {
+        toast.success("Pedido realizado com sucesso!");
+        navigate("/pedidos");
+      }
+    } catch (error) {}
   };
 
   if (!produto) {
@@ -71,7 +81,7 @@ export default function ProdutoDetalhado() {
               </div>
             </div>
 
-            <button onClick={fazerPedido}>Fazer Pedido</button>
+            <button onClick={handlePedido}>Fazer Pedido</button>
           </div>
         </div>
       </div>

@@ -1,60 +1,75 @@
 .pedidos-container {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  background-color: rgb(40, 40, 40);
 }
+
 .pedidos-main {
-  height: calc(100vh - 64px - 64px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #ffd900;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 217, 0, 1) 0%,
-    rgba(255, 128, 0, 1) 100%
-  );
-}
-
-.pedidos-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 95%;
-  height: 90%;
-  border-radius: 50px;
-  background-color: rgba(0, 0, 0, 0.6);
-  overflow: hidden;
-}
-.pedidos-body h2 {
-  color: white;
-  width: 90%;
-}
-.pedidos {
-  padding-right: 100px;
-  padding-left: 100px;
-  width: 80%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow-y: auto;
-  gap: 6px;
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 2rem;
+  box-sizing: border-box;
 }
 
-.pedidos::-webkit-scrollbar {
-  width: 6px;
+.pedidos-main h2 {
+  color: rgb(255, 212, 69);
+  font-size: 2.2rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
 }
 
-.pedidos::-webkit-scrollbar-thumb {
-  background-color: #ccc;
+/* Corpo da lista de pedidos */
+.pedidos-lista {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 1000px;
+  height: 75vh;
+  padding: 1.5rem 2rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  overflow-y: auto;
+  box-shadow: 0 0 20px rgba(226, 177, 17, 0.897);
+}
+
+/* Barra de rolagem */
+.pedidos-lista::-webkit-scrollbar {
+  width: 8px;
+}
+
+.pedidos-lista::-webkit-scrollbar-thumb {
+  background-color: rgb(255, 212, 69);
   border-radius: 10px;
 }
 
+/* Mensagem sem pedidos */
 .sem-pedidos {
-  font-size: 60px;
+  font-size: 2rem;
   color: white;
-  opacity: 0.5;
+  opacity: 0.6;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .pedidos-main h2 {
+    font-size: 1.8rem;
+  }
+
+  .pedidos-lista {
+    height: 70vh;
+    padding: 1rem;
+  }
+
+  .sem-pedidos {
+    font-size: 1.6rem;
+  }
 }

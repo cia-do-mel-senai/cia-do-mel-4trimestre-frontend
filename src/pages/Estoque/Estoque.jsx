@@ -1,9 +1,7 @@
 import CardProduto from "../../components/CardProduto/CardProduto";
-import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import "./Estoque.css";
-import { AuthContext } from "../../context/authContext";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { pegarProdutos } from "../../services/servicoProduto";
 
