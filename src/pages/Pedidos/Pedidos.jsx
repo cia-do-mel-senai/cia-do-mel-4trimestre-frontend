@@ -39,19 +39,12 @@ export default function Pedidos() {
                 data={new Date(pedido.data_criacao).toLocaleDateString()}
                 codigoPedido={pedido.codigo_pedido}
                 status={pedido.status}
-                quantidade={pedido.valor_total}
+                quantidade={pedido.quantidade}
                 id={pedido.id}
+                nome={pedido.nome_produto}
               />
             ))
           )}
-
-          <Pedido
-            data={new Date().toLocaleDateString()}
-            codigoPedido={1}
-            status={"Pedido realizado"}
-            quantidade={100}
-            id={1}
-          />
         </div>
       </div>
     </div>

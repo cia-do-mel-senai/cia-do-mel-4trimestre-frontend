@@ -9,6 +9,8 @@ import { fazerPedido } from "../../services/servicoPedido";
 
 export default function ProdutoDetalhado() {
   const [produto, setProduto] = useState(null);
+  const [mostrarModal, setMostrarModal] = useState(false);
+  const [quantidade, setQuantidade] = useState(1);
   const navigate = useNavigate();
   const params = useParams();
 
@@ -27,14 +29,17 @@ export default function ProdutoDetalhado() {
   const handlePedido = async () => {
     try {
       const response = await fazerPedido({
-        quantidade: 50,
-        produtoNome: produto.nome,
+        quantidade: quantidade,
+        produtoId: produto.id,
       });
       if (response.status === 201) {
         toast.success("Pedido realizado com sucesso!");
+        setMostrarModal(false);
         navigate("/pedidos");
       }
-    } catch (error) {}
+    } catch (error) {
+      toast.error("Erro ao realizar pedido.");
+    }
   };
 
   if (!produto) {
@@ -81,10 +86,37 @@ export default function ProdutoDetalhado() {
               </div>
             </div>
 
-            <button onClick={handlePedido}>Fazer Pedido</button>
+            <button onClick={() => setMostrarModal(true)}>Fazer Pedido</button>
           </div>
         </div>
       </div>
+
+      {mostrarModal && (
+        <div className="modal-overlay" onClick={() => setMostrarModal(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <h2>Confirmar Pedido</h2>
+            <p>Informe a quantidade desejada:</p>
+            <input
+              type="number"
+              min="1"
+              value={quantidade}
+              onChange={(e) => setQuantidade(e.target.value)}
+            />
+            <div className="modal-buttons">
+              <button
+                className="cancelar"
+                onClick={() => setMostrarModal(false)}
+              >
+                Cancelar
+              </button>
+              <button className="confirmar" onClick={handlePedido}>
+                Confirmar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <ToastContainer position="top-center" />
     </div>
   );

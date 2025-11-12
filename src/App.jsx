@@ -3,9 +3,7 @@ import LandingPage from "./pages/LandingPage/LandingPage";
 import CadastroProduto from "./pages/CadastroProduto/CadastroProduto";
 import EdicaoProduto from "./pages/EdicaoProduto/EdicaoProduto";
 import Catalogo from "./pages/Estoque/Estoque";
-import CadastroCliente from "./pages/CadastroCliente/CadastroCliente";
 import LoginCliente from "./pages/LoginCliente/LoginCliente";
-import Carrinho from "./pages/Carrinho/Carrinho";
 import Pedidos from "./pages/Pedidos/Pedidos";
 import ProdutoDetalhado from "./pages/ProdutoDetalhado/ProdutoDetalhado";
 import { AuthProvider } from "./context/authContext";
@@ -17,9 +15,7 @@ function App() {
     { path: "/produto/:id/editar", element: <EdicaoProduto /> },
     { path: "/produto/:id", element: <ProdutoDetalhado /> },
     { path: "/estoque", element: <Catalogo /> },
-    { path: "/cadastro", element: <CadastroCliente /> },
     { path: "/login", element: <LoginCliente /> },
-    { path: "/carrinho", element: <Carrinho /> },
     { path: "/pedidos", element: <Pedidos /> },
   ]);
   return (

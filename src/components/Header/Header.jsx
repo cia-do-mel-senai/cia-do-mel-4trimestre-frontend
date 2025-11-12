@@ -22,6 +22,7 @@ export default function Header() {
               Cadastrar produto
             </button>
             <button onClick={() => navigate("/estoque")}>Estoque</button>
+            <button onClick={() => navigate("/pedidos")}>Pedidos</button>
             <button onClick={() => sair()}>Sair</button>
           </>
         )}

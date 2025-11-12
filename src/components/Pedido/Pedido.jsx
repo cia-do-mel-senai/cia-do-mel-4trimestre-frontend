@@ -1,6 +1,12 @@
 import "./Pedido.css";
 
-export default function Pedido({ data, codigoPedido, status, quantidade }) {
+export default function Pedido({
+  data,
+  codigoPedido,
+  status,
+  quantidade,
+  nome,
+}) {
   const statusOptions = {
     "Pedido realizado": "status-realizado",
     "Pedido em preparo": "status-preparo",
@@ -14,13 +20,20 @@ export default function Pedido({ data, codigoPedido, status, quantidade }) {
   return (
     <div className="pedido-container">
       <div className="pedido-info">
-        <p className="pedido-data">{data}</p>
-        <p className="pedido-codigo">ID: {codigoPedido}</p>
+        <h2 className="pedido-nome">{nome}</h2>
+
+        <div className="pedido-detalhes">
+          <p>{data}</p>
+          <p className="pedido-codigo">ID: {codigoPedido}</p>
+        </div>
       </div>
 
       <div className="pedido-controle">
         <p className={`pedido-status ${statusClass}`}>{status}</p>
-        <p className="pedido-quantidade">Qtde: {quantidade}</p>
+        <div className="pedido-quantidade-box">
+          <span>Qtde</span>
+          <p>{quantidade}</p>
+        </div>
       </div>
     </div>
   );
