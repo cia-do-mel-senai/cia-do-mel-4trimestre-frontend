@@ -218,8 +218,8 @@ export default function EdicaoProduto() {
               >
                 <option value="">Selecione</option>
                 <option value="Sem rótulo">Sem rótulo</option>
-                <option value="Padrão">Padrão</option>
-                <option value="Personalizado">Personalizado</option>
+                <option value="Preto">Rótulo preto</option>
+                <option value="Branco">Rótulo branco</option>
               </select>
             </div>
 
