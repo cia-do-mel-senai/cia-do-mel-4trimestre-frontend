@@ -2,15 +2,10 @@ import CardProduto from "../../components/CardProduto/CardProduto";
 import Header from "../../components/Header/Header";
 import "./Estoque.css";
 import { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
 import { pegarProdutos } from "../../services/servicoProduto";
 
 export default function Catalogo() {
   const [produtos, setProdutos] = useState([]);
-  const [filtro, setFiltro] = useState("");
-  const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
-  const [pesquisa, setPesquisa] = useState("");
 
   useEffect(() => {
     async function listarProdutos() {
@@ -25,10 +20,6 @@ export default function Catalogo() {
     }
     listarProdutos();
   }, []);
-
-  useEffect(() => {
-    setPesquisa(searchParams.get("pesquisa") || "");
-  }, [searchParams]);
 
   return (
     <div className="catalogo-container">

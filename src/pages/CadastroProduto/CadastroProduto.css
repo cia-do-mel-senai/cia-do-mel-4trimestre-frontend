@@ -1,125 +1,99 @@
-.cadastro-produto-container {
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.cadastro-produto-body {
-  flex-grow: 1;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  background-color: rgb(40, 40, 40);
+  z-index: 999;
+}
+
+.modal-card {
+  background: #222;
   padding: 2rem;
-}
-
-.cadastro-produto-form {
-  background-color: rgb(30, 30, 30);
-  border-radius: 30px;
-  padding: 2rem 3rem;
-  width: 100%;
-  max-width: 600px;
-  box-shadow: 0 0 20px rgba(255, 212, 69, 0.5);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-}
-
-.cadastro-produto-inputs {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  color: white;
-  font-size: 18px;
-  gap: 1rem;
-}
-
-.cadastro-produto-inputs h2 {
-  font-size: 2rem;
-  margin-bottom: 0.3rem;
-  text-align: center;
-  color: rgb(255, 212, 69);
-}
-
-.cadastro-produto-inputs div {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-}
-
-.cadastro-produto-inputs label {
-  font-weight: bold;
-}
-
-.cadastro-produto-inputs input,
-.cadastro-produto-inputs textarea,
-.cadastro-produto-inputs select {
-  padding: 0.8rem;
-  border: 2px solid rgb(100, 100, 100);
-  border-radius: 8px;
-  font-size: 1rem;
-  background-color: rgb(60, 60, 60);
-  color: rgb(235, 235, 235);
-  transition: border-color 0.2s;
-}
-
-.cadastro-produto-inputs input:focus,
-.cadastro-produto-inputs textarea:focus,
-.cadastro-produto-inputs select:focus {
-  border-color: rgb(255, 212, 69);
-  outline: none;
-}
-
-.cadastro-produto-inputs textarea {
-  resize: none;
-  height: 80px;
-}
-
-.cadastro-produto-inputs button {
-  width: 100%;
-  max-width: 250px;
-  height: 50px;
-  background-color: black;
-  border: none;
-  border-radius: 15px;
-  cursor: pointer;
-  color: white;
-  font-weight: bold;
-  font-size: 1.3rem;
-  margin: 1rem auto 0;
-  transition: background-color 0.3s, transform 0.1s;
-}
-
-.cadastro-produto-inputs button:hover {
-  background-color: #1e1d1d;
-  transform: scale(1.02);
-}
-
-.register-product-import-icon {
-  width: 300px;
-  height: 300px;
-  padding: 20px;
-  background-color: white;
-  color: #646464;
-  margin: 0 auto 1rem;
   border-radius: 20px;
+  width: 100%;
+  max-width: 450px;
+  color: white;
+  position: relative;
+  animation: aparecer 0.2s ease-out;
+  box-shadow: 0 0 20px rgba(255, 212, 69, 0.5);
+  /* 🔥 ESSENCIAL para não ultrapassar a tela */
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: red;
+  border: none;
+  color: white;
+  font-weight: bold;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.modal-img-box {
+  width: 100%;
+  height: 200px;
+  background: #444;
+  border-radius: 12px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: bold;
-  text-align: center;
-  transition: transform 0.2s;
+  margin-bottom: 1rem;
+  overflow: hidden;
 }
 
-.register-product-import-icon:hover {
-  transform: scale(1.05);
-}
-
-.register-product-import-icon img {
-  border-radius: 20px;
+.modal-img-box img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.modal-form input,
+.modal-form textarea,
+.modal-form select {
+  padding: 0.7rem;
+  border-radius: 10px;
+  background: #333;
+  border: 1px solid #666;
+  color: white;
+}
+
+.modal-btn {
+  margin-top: 1rem;
+  padding: 0.9rem;
+  background: rgb(255, 212, 69);
+  border: none;
+  border-radius: 12px;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1rem;
 }

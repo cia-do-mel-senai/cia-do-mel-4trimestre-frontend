@@ -1,12 +1,14 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import "./Header.css";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/authContext";
+import ModalCadastroProduto from "../../pages/CadastroProduto/CadastroProduto";
 
 export default function Header() {
   const navigate = useNavigate();
   const { usuario, sair } = useContext(AuthContext);
-
+  const [modalAberto, setModalAberto] = useState(false);
+  const location = useLocation();
   return (
     <div className="header-container">
       <img
@@ -18,15 +20,21 @@ export default function Header() {
       <div className="botoes-header">
         {usuario && (
           <>
-            <button onClick={() => navigate("/produto/novo")}>
-              Cadastrar produto
-            </button>
+            {location.pathname === "/estoque" && (
+              <button onClick={() => setModalAberto(true)}>
+                Cadastrar produto
+              </button>
+            )}
             <button onClick={() => navigate("/estoque")}>Estoque</button>
             <button onClick={() => navigate("/pedidos")}>Pedidos</button>
             <button onClick={() => sair()}>Sair</button>
           </>
         )}
       </div>
+      <ModalCadastroProduto
+        aberto={modalAberto}
+        fechar={() => setModalAberto(false)}
+      />
     </div>
   );
 }

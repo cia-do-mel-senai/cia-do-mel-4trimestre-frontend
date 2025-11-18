@@ -11,7 +11,6 @@ import { AuthProvider } from "./context/authContext";
 function App() {
   const router = createBrowserRouter([
     { path: "/", element: <LandingPage /> },
-    { path: "/produto/novo", element: <CadastroProduto /> },
     { path: "/produto/:id/editar", element: <EdicaoProduto /> },
     { path: "/produto/:id", element: <ProdutoDetalhado /> },
     { path: "/estoque", element: <Catalogo /> },

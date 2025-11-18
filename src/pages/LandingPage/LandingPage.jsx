@@ -11,10 +11,13 @@ function LandingPage() {
 
       <div className="LandingPage-content">
         <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius
-          suscipit in voluptatibus exercitationem nulla deserunt sequi,
-          temporibus, voluptas distinctio quam alias esse neque amet accusamus
-          odit rerum quaerat illum nobis?
+          Gerenciar a produção de embalagens nunca foi tão simples. Nosso
+          sistema foi desenvolvido especialmente para empresas do setor apícola
+          que precisam de agilidade, precisão e total controle em cada etapa do
+          processo — do cadastro dos frascos ao controle de estoque e
+          acompanhamento de pedidos. Com uma interface intuitiva e moderna, você
+          administra tudo em um único lugar, reduzindo erros, acelerando o
+          trabalho e garantindo mais qualidade no resultado final.
         </p>
         <button onClick={() => navigate("/login")}>ACESSE</button>
       </div>
