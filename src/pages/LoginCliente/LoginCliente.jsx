@@ -6,6 +6,8 @@ import "./LoginCliente.css";
 import { logarUsuario } from "../../services/servicoUsuario.js";
 import { AuthContext } from "../../context/authContext.jsx";
 import Header from "../../components/Header/Header.jsx";
+import { MdEmail } from "react-icons/md";
+import { Phone } from "lucide-react";
 
 const LoginCliente = () => {
   const [email, setEmail] = useState("");
@@ -13,6 +15,7 @@ const LoginCliente = () => {
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
   const { usuario } = useContext(AuthContext);
+  const [mostrarModal, setMostrarModal] = useState(false);
 
   useEffect(() => {
     if (usuario) navigate("/estoque");
@@ -40,6 +43,30 @@ const LoginCliente = () => {
       console.log(error);
       toast.error(error.response.data.erro);
     }
+  };
+
+  const ModalContato = () => {
+    if (!mostrarModal) return null;
+
+    return (
+      <div className="modal-fundo" onClick={() => setMostrarModal(false)}>
+        <div className="modal-conteudo" onClick={(e) => e.stopPropagation()}>
+          <h3>Precisa de ajuda?</h3>
+          <MdEmail size={20} />
+          <strong>ciadomelsenai@gmail.com</strong>
+          <br />
+          <Phone />
+          <strong>(99)99999-9999</strong>
+          <br />
+          <button
+            className="modal-botao"
+            onClick={() => setMostrarModal(false)}
+          >
+            Fechar
+          </button>
+        </div>
+      </div>
+    );
   };
 
   return (
@@ -86,18 +113,11 @@ const LoginCliente = () => {
           </button>
           <p className="possuiContaLogin">
             Problemas com acesso?{" "}
-            <span
-              onClick={() => {
-                window.location.href =
-                  "https://www.youtube.com/watch?v=XfELJU1mRMg";
-              }}
-            >
-              Contate-nos
-            </span>
+            <span onClick={() => setMostrarModal(true)}>Contate-nos</span>
           </p>
         </form>
       </div>
-
+      <ModalContato />
       <ToastContainer position="top-center" limit={1}></ToastContainer>
     </div>
   );
