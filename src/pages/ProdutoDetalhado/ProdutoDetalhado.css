@@ -5,6 +5,10 @@
   flex-direction: column;
 }
 
+.produto-detalhado-container h1,
+.produto-detalhado-container p {
+  margin: 0;
+}
 .produto-detalhado-body {
   flex-grow: 1;
   display: flex;

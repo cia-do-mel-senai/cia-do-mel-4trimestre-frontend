@@ -33,17 +33,19 @@ export default function Pedidos() {
           {pedidos.length === 0 ? (
             <h3 className="sem-pedidos">Ainda não há pedidos</h3>
           ) : (
-            pedidos.map((pedido, index) => (
-              <Pedido
-                key={index}
-                data={new Date(pedido.data_criacao).toLocaleDateString()}
-                codigoPedido={pedido.codigo_pedido}
-                status={pedido.status}
-                quantidade={pedido.quantidade}
-                id={pedido.id}
-                nome={pedido.nome_produto}
-              />
-            ))
+            pedidos
+              .map((pedido, index) => (
+                <Pedido
+                  key={index}
+                  data={new Date(pedido.data_criacao).toLocaleDateString()}
+                  codigoPedido={pedido.codigo_pedido}
+                  status={pedido.status}
+                  quantidade={pedido.quantidade}
+                  id={pedido.id}
+                  nome={pedido.nome_produto}
+                />
+              ))
+              .reverse()
           )}
         </div>
       </div>

@@ -8,11 +8,8 @@ export default function Pedido({
   nome,
 }) {
   const statusOptions = {
-    "Pedido realizado": "status-realizado",
-    "Pedido em preparo": "status-preparo",
-    "Pedido enviado": "status-enviado",
-    "Pedido entregue": "status-entregue",
-    "Pedido cancelado": "status-cancelado",
+    Pendente: "status-pendente",
+    Completed: "status-completo",
   };
 
   const statusClass = statusOptions[status] || "status-default";
@@ -29,7 +26,9 @@ export default function Pedido({
       </div>
 
       <div className="pedido-controle">
-        <p className={`pedido-status ${statusClass}`}>{status}</p>
+        <p className={`pedido-status ${statusClass}`}>
+          {status === "Completed" ? "Completo" : status}
+        </p>
         <div className="pedido-quantidade-box">
           <span>Qtde</span>
           <p>{quantidade}</p>
