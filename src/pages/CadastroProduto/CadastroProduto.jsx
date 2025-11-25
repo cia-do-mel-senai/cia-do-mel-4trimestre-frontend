@@ -97,71 +97,83 @@ export default function ModalCadastroProduto({ aberto, fechar }) {
             />
           </div>
 
-          <label>Nome</label>
-          <input value={nome} onChange={(e) => setNome(e.target.value)} />
+          <div className="form-columns">
+            <div className="form-col">
+              <label>Nome</label>
+              <input value={nome} onChange={(e) => setNome(e.target.value)} />
 
-          <label>Preço</label>
-          <input
-            type="number"
-            step="0.01"
-            value={preco}
-            onChange={(e) => setPreco(e.target.value)}
-          />
+              <label>Preço</label>
+              <input
+                type="number"
+                step="0.01"
+                value={preco}
+                onChange={(e) => setPreco(e.target.value)}
+              />
 
-          <label>Descrição</label>
-          <textarea
-            value={descricao}
-            onChange={(e) => setDescricao(e.target.value)}
-          />
+              <label>Tamanho</label>
+              <select
+                value={tamanho}
+                onChange={(e) => setTamanho(e.target.value)}
+              >
+                <option value="">Selecione</option>
+                <option value="Pequeno">Pequeno</option>
+                <option value="Médio">Médio</option>
+                <option value="Grande">Grande</option>
+              </select>
 
-          <label>Tamanho</label>
-          <select value={tamanho} onChange={(e) => setTamanho(e.target.value)}>
-            <option value="">Selecione</option>
-            <option value="Pequeno">Pequeno</option>
-            <option value="Médio">Médio</option>
-            <option value="Grande">Grande</option>
-          </select>
+              <label>Rótulo</label>
+              <select
+                value={rotulo}
+                onChange={(e) => setRotulo(e.target.value)}
+              >
+                <option value="">Selecione</option>
+                <option value="Sem rótulo">Sem rótulo</option>
+                <option value="Preto">Rótulo preto</option>
+                <option value="Branco">Rótulo branco</option>
+              </select>
+            </div>
 
-          <label>Rótulo</label>
-          <select value={rotulo} onChange={(e) => setRotulo(e.target.value)}>
-            <option value="">Selecione</option>
-            <option value="Sem rótulo">Sem rótulo</option>
-            <option value="Preto">Rótulo preto</option>
-            <option value="Branco">Rótulo branco</option>
-          </select>
+            <div className="form-col">
+              <label>Tipo de Embalagem</label>
+              <select
+                value={tipoEmbalagem}
+                onChange={(e) => setTipoEmbalagem(e.target.value)}
+              >
+                <option value="">Selecione</option>
+                <option value="Vidro">Vidro</option>
+                <option value="Plástico">Plástico</option>
+                <option value="Acrílico">Acrílico</option>
+              </select>
 
-          <label>Tipo de Embalagem</label>
-          <select
-            value={tipoEmbalagem}
-            onChange={(e) => setTipoEmbalagem(e.target.value)}
-          >
-            <option value="">Selecione</option>
-            <option value="Vidro">Vidro</option>
-            <option value="Plástico">Plástico</option>
-            <option value="Acrílico">Acrílico</option>
-          </select>
+              <label>Cor da Tampa</label>
+              <select
+                value={corTampa}
+                onChange={(e) => setCorTampa(e.target.value)}
+              >
+                <option value="">Selecione</option>
+                <option value="Verde">Verde</option>
+                <option value="Laranja">Laranja</option>
+                <option value="Roxo">Roxo</option>
+              </select>
 
-          <label>Cor da Tampa</label>
-          <select
-            value={corTampa}
-            onChange={(e) => setCorTampa(e.target.value)}
-          >
-            <option value="">Selecione</option>
-            <option value="Verde">Verde</option>
-            <option value="Laranja">Laranja</option>
-            <option value="Roxo">Roxo</option>
-          </select>
+              <label>Acabamento</label>
+              <select
+                value={acabamento}
+                onChange={(e) => setAcabamento(e.target.value)}
+              >
+                <option value="">Selecione</option>
+                <option value="Fosco">Fosco</option>
+                <option value="Brilhante">Brilhante</option>
+                <option value="Texturizado">Texturizado</option>
+              </select>
 
-          <label>Acabamento</label>
-          <select
-            value={acabamento}
-            onChange={(e) => setAcabamento(e.target.value)}
-          >
-            <option value="">Selecione</option>
-            <option value="Fosco">Fosco</option>
-            <option value="Brilhante">Brilhante</option>
-            <option value="Texturizado">Texturizado</option>
-          </select>
+              <label>Descrição</label>
+              <textarea
+                value={descricao}
+                onChange={(e) => setDescricao(e.target.value)}
+              />
+            </div>
+          </div>
 
           <button className="modal-btn" type="submit">
             Cadastrar

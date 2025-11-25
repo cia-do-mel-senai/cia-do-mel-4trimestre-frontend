@@ -85,7 +85,6 @@ export default function ProdutoDetalhado() {
                 {produto.acabamento_superficie}
               </div>
             </div>
-
             <button onClick={() => setMostrarModal(true)}>Fazer Pedido</button>
           </div>
         </div>

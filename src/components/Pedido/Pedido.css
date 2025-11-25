@@ -55,27 +55,16 @@
   text-transform: capitalize;
 }
 
-/* Cores dos status (mais discretas) */
-.status-realizado {
-  color: #5cb85c;
+/* Novo status — cores especiais */
+.status-pendente {
+  color: #f0ad4e; /* amarelo alerta */
 }
 
-.status-preparo {
-  color: #f0ad4e;
+.status-completo {
+  color: #5cb85c; /* verde sucesso */
 }
 
-.status-enviado {
-  color: #5bc0de;
-}
-
-.status-entregue {
-  color: #9370db;
-}
-
-.status-cancelado {
-  color: #d9534f;
-}
-
+/* fallback */
 .status-default {
   color: #9e9e9e;
 }
