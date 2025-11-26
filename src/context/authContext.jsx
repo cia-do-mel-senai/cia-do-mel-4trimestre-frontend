@@ -27,7 +27,7 @@ export function AuthProvider({ children }) {
       .get("/perfil")
       .then((res) => {
         setUsuario(res.data.usuario);
-        window.location = "/estoque";
+        window.location = "/produtos";
       })
       .catch(() => sair());
   }
