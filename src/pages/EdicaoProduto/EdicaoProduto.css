@@ -17,121 +17,114 @@
 
 .edicao-produto-form {
   background-color: rgb(30, 30, 30);
-  border-radius: 30px;
+  border-radius: 25px;
   padding: 2rem 3rem;
   width: 100%;
-  max-width: 600px;
+  max-width: 1100px; /* Aumentado */
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
   box-shadow: 0 0 20px rgba(255, 212, 69, 0.5);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-}
-
-.edicao-produto-inputs {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
   color: white;
-  font-size: 18px;
-  gap: 1rem;
 }
 
-.edicao-produto-inputs h2 {
-  font-size: 2rem;
-  margin-bottom: 0.3rem;
-  text-align: center;
-  color: rgb(255, 212, 69);
-}
-
-.edicao-produto-inputs div {
+.edicao-layout {
   display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-}
-
-.edicao-produto-inputs label {
-  font-weight: bold;
-}
-
-.edicao-produto-inputs input,
-.edicao-produto-inputs textarea,
-.edicao-produto-inputs select {
-  padding: 0.8rem;
-  border: 2px solid rgb(100, 100, 100);
-  border-radius: 8px;
-  font-size: 1rem;
-  background-color: rgb(60, 60, 60);
-  color: rgb(235, 235, 235);
-  transition: border-color 0.2s;
-}
-
-.edicao-produto-inputs input:focus,
-.edicao-produto-inputs textarea:focus,
-.edicao-produto-inputs select:focus {
-  border-color: rgb(255, 212, 69);
-  outline: none;
-}
-
-.edicao-produto-inputs textarea {
-  resize: none;
-  height: 80px;
-}
-
-.edicao-produto-inputs button {
+  gap: 2rem;
   width: 100%;
-  max-width: 250px;
-  height: 50px;
-  background-color: black;
-  border: none;
-  border-radius: 15px;
-  cursor: pointer;
-  color: white;
-  font-weight: bold;
-  font-size: 1.3rem;
-  margin: 1rem auto 0;
-  transition: background-color 0.3s, transform 0.1s;
 }
 
-.edicao-produto-inputs button:hover {
-  background-color: #1e1d1d;
-  transform: scale(1.02);
-}
-
-.edit-product-import-icon {
-  width: 300px;
-  height: 300px;
-  padding: 20px;
-  background-color: white;
-  color: #646464;
-  margin: 0 auto 1rem;
+/* ---- Caixa da imagem ----- */
+.edicao-img-box {
+  width: 380px;
+  height: 380px;
+  background: #444;
   border-radius: 20px;
   cursor: pointer;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: bold;
-  text-align: center;
-  transition: transform 0.2s;
 }
 
-.edit-product-import-icon:hover {
-  transform: scale(1.05);
-}
-
-.edit-product-import-icon img {
-  border-radius: 20px;
+.edicao-img-box img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
-.edicao-produto-buttons {
+/* ---- Formulário em duas colunas ----- */
+.edicao-form-columns {
+  flex: 1;
   display: flex;
-  flex-direction: row;
-  gap: 20px;
-  margin-top: 10px;
+  gap: 1.5rem;
 }
 
-.alterar:hover,
-.excluir:hover {
-  background-color: #1e1d1d;
+.edicao-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+/* Inputs modernos */
+.edicao-col input,
+.edicao-col select,
+.edicao-col textarea {
+  background: #333;
+  border: 1px solid #666;
+  border-radius: 10px;
+  padding: 0.7rem;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.edicao-col textarea {
+  resize: none;
+  height: 90px;
+}
+
+/* ---- Botões alinhados horizontalmente ---- */
+.edicao-buttons-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.alterar,
+.excluir {
+  width: 160px;
+  padding: 0.8rem 0;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.alterar {
+  background: #ffd445;
+  color: black;
+}
+
+.excluir {
+  background: #ff5555;
+  color: white;
+}
+
+/* Responsivo */
+@media (max-width: 900px) {
+  .edicao-layout {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .edicao-img-box {
+    width: 100%;
+    max-width: 350px;
+  }
+
+  .edicao-form-columns {
+    flex-direction: column;
+  }
 }

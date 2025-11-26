@@ -18,7 +18,7 @@ const LoginCliente = () => {
   const [mostrarModal, setMostrarModal] = useState(false);
 
   useEffect(() => {
-    if (usuario) navigate("/estoque");
+    if (usuario) navigate("/produtos");
   }, [usuario, navigate]);
 
   const botaoLogin = async (e) => {

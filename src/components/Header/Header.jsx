@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/authContext";
 import ModalCadastroProduto from "../../pages/CadastroProduto/CadastroProduto";
 
-export default function Header() {
+export default function Header({ setProdutos }) {
   const navigate = useNavigate();
   const { usuario, sair } = useContext(AuthContext);
   const [modalAberto, setModalAberto] = useState(false);
@@ -20,12 +20,12 @@ export default function Header() {
       <div className="botoes-header">
         {usuario && (
           <>
-            {location.pathname === "/estoque" && (
+            {location.pathname === "/produtos" && (
               <button onClick={() => setModalAberto(true)}>
                 Cadastrar produto
               </button>
             )}
-            <button onClick={() => navigate("/estoque")}>Estoque</button>
+            <button onClick={() => navigate("/produtos")}>Produtos</button>
             <button onClick={() => navigate("/pedidos")}>Pedidos</button>
             <button onClick={() => sair()}>Sair</button>
           </>
@@ -34,6 +34,7 @@ export default function Header() {
       <ModalCadastroProduto
         aberto={modalAberto}
         fechar={() => setModalAberto(false)}
+        setProdutos={setProdutos || null}
       />
     </div>
   );

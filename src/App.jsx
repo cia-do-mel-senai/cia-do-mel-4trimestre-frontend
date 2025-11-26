@@ -1,8 +1,7 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import LandingPage from "./pages/LandingPage/LandingPage";
-import CadastroProduto from "./pages/CadastroProduto/CadastroProduto";
 import EdicaoProduto from "./pages/EdicaoProduto/EdicaoProduto";
-import Catalogo from "./pages/Estoque/Estoque";
+import Produtos from "./pages/Produtos/Produtos";
 import LoginCliente from "./pages/LoginCliente/LoginCliente";
 import Pedidos from "./pages/Pedidos/Pedidos";
 import ProdutoDetalhado from "./pages/ProdutoDetalhado/ProdutoDetalhado";
@@ -13,7 +12,7 @@ function App() {
     { path: "/", element: <LandingPage /> },
     { path: "/produto/:id/editar", element: <EdicaoProduto /> },
     { path: "/produto/:id", element: <ProdutoDetalhado /> },
-    { path: "/estoque", element: <Catalogo /> },
+    { path: "/produtos", element: <Produtos /> },
     { path: "/login", element: <LoginCliente /> },
     { path: "/pedidos", element: <Pedidos /> },
   ]);

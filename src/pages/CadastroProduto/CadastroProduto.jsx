@@ -4,7 +4,7 @@ import { cadastrarProduto } from "../../services/servicoProduto";
 import { toast } from "react-toastify";
 import { useLocation } from "react-router-dom";
 
-export default function ModalCadastroProduto({ aberto, fechar }) {
+export default function ModalCadastroProduto({ aberto, fechar, setProdutos }) {
   const [nome, setNome] = useState("");
   const [preco, setPreco] = useState("");
   const [descricao, setDescricao] = useState("");
@@ -49,10 +49,20 @@ export default function ModalCadastroProduto({ aberto, fechar }) {
       };
 
       const resposta = await cadastrarProduto(produto);
+      const data = resposta.data;
 
       if (resposta.status === 201) {
+        setNome("");
+        setPreco("");
+        setDescricao("");
+        setTamanho("");
+        setRotulo("");
+        setTipoEmbalagem("");
+        setCorTampa("");
+        setAcabamento("");
+        setImagem(null);
         toast.success("Produto cadastrado!");
-        window.location.reload();
+        setProdutos((prev) => [...prev, data.produto]);
         fechar();
       }
     } catch (error) {

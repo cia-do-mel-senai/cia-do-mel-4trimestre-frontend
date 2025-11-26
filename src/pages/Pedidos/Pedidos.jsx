@@ -43,6 +43,7 @@ export default function Pedidos() {
                   quantidade={pedido.quantidade}
                   id={pedido.id}
                   nome={pedido.nome_produto}
+                  valor={pedido.preco_produto}
                 />
               ))
               .reverse()

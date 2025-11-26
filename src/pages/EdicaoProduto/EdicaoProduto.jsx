@@ -141,27 +141,17 @@ export default function EdicaoProduto() {
           className="edicao-produto-form"
           onSubmit={(e) => e.preventDefault()}
         >
-          <div className="edicao-produto-inputs">
-            <h2>Edição de Produto</h2>
+          <h2>Edição de Produto</h2>
 
-            <div
-              className="register-product-import-icon"
-              onClick={handleImageClick}
-            >
+          <div className="edicao-layout">
+            {/* ---- ESQUERDA: IMAGEM ---- */}
+            <div className="edicao-img-box" onClick={handleImageClick}>
               {previewUrl ? (
-                <img
-                  src={previewUrl}
-                  alt="Preview"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    borderRadius: "20px",
-                    objectFit: "cover",
-                  }}
-                />
+                <img src={previewUrl} alt="Preview" />
               ) : (
-                <Import style={{ width: "50%", height: "50%" }} />
+                <Import style={{ width: "40%", height: "40%", opacity: 0.4 }} />
               )}
+
               <input
                 type="file"
                 accept="image/*"
@@ -171,105 +161,92 @@ export default function EdicaoProduto() {
               />
             </div>
 
-            <div>
-              <label>Nome</label>
-              <input
-                type="text"
-                value={nome}
-                onChange={(e) => setNome(e.target.value)}
-              />
-            </div>
+            {/* ---- DIREITA: FORMULÁRIO ---- */}
+            <div className="edicao-form-columns">
+              <div className="edicao-col">
+                <label>Nome</label>
+                <input value={nome} onChange={(e) => setNome(e.target.value)} />
 
-            <div>
-              <label>Preço</label>
-              <input
-                type="number"
-                value={preco}
-                onChange={(e) => setPreco(Number(e.target.value))}
-              />
-            </div>
+                <label>Preço</label>
+                <input
+                  type="number"
+                  value={preco}
+                  onChange={(e) => setPreco(Number(e.target.value))}
+                />
 
-            <div>
-              <label>Descrição</label>
-              <textarea
-                value={descricao}
-                onChange={(e) => setDescricao(e.target.value)}
-              />
-            </div>
+                <label>Descrição</label>
+                <textarea
+                  value={descricao}
+                  onChange={(e) => setDescricao(e.target.value)}
+                />
+              </div>
 
-            <div>
-              <label>Tamanho</label>
-              <select
-                value={tamanho}
-                onChange={(e) => setTamanho(e.target.value)}
-              >
-                <option value="">Selecione</option>
-                <option value="Pequeno">Pequeno</option>
-                <option value="Médio">Médio</option>
-                <option value="Grande">Grande</option>
-              </select>
-            </div>
+              <div className="edicao-col">
+                <label>Tamanho</label>
+                <select
+                  value={tamanho}
+                  onChange={(e) => setTamanho(e.target.value)}
+                >
+                  <option value="">Selecione</option>
+                  <option value="Pequeno">Pequeno</option>
+                  <option value="Médio">Médio</option>
+                  <option value="Grande">Grande</option>
+                </select>
 
-            <div>
-              <label>Rótulo</label>
-              <select
-                value={rotulo}
-                onChange={(e) => setRotulo(e.target.value)}
-              >
-                <option value="">Selecione</option>
-                <option value="Sem rótulo">Sem rótulo</option>
-                <option value="Preto">Rótulo preto</option>
-                <option value="Branco">Rótulo branco</option>
-              </select>
-            </div>
+                <label>Rótulo</label>
+                <select
+                  value={rotulo}
+                  onChange={(e) => setRotulo(e.target.value)}
+                >
+                  <option value="">Selecione</option>
+                  <option value="Sem rótulo">Sem rótulo</option>
+                  <option value="Preto">Rótulo preto</option>
+                  <option value="Branco">Rótulo branco</option>
+                </select>
 
-            <div>
-              <label>Tipo de Embalagem</label>
-              <select
-                value={tipoEmbalagem}
-                onChange={(e) => setTipoEmbalagem(e.target.value)}
-              >
-                <option value="">Selecione</option>
-                <option value="Vidro">Vidro</option>
-                <option value="Plástico">Plástico</option>
-                <option value="Acrílico">Acrílico</option>
-              </select>
-            </div>
+                <label>Tipo de Embalagem</label>
+                <select
+                  value={tipoEmbalagem}
+                  onChange={(e) => setTipoEmbalagem(e.target.value)}
+                >
+                  <option value="">Selecione</option>
+                  <option value="Vidro">Vidro</option>
+                  <option value="Plástico">Plástico</option>
+                  <option value="Acrílico">Acrílico</option>
+                </select>
 
-            <div>
-              <label>Cor da Tampa</label>
-              <select
-                value={corTampa}
-                onChange={(e) => setCorTampa(e.target.value)}
-              >
-                <option value="">Selecione</option>
-                <option value="Verde">Verde</option>
-                <option value="Laranja">Laranja</option>
-                <option value="Roxo">Roxo</option>
-              </select>
-            </div>
+                <label>Cor da Tampa</label>
+                <select
+                  value={corTampa}
+                  onChange={(e) => setCorTampa(e.target.value)}
+                >
+                  <option value="">Selecione</option>
+                  <option value="Verde">Verde</option>
+                  <option value="Laranja">Laranja</option>
+                  <option value="Roxo">Roxo</option>
+                </select>
 
-            <div>
-              <label>Acabamento da Superfície</label>
-              <select
-                value={acabamento}
-                onChange={(e) => setAcabamento(e.target.value)}
-              >
-                <option value="">Selecione</option>
-                <option value="Fosco">Fosco</option>
-                <option value="Brilhante">Brilhante</option>
-                <option value="Texturizado">Texturizado</option>
-              </select>
+                <label>Acabamento</label>
+                <select
+                  value={acabamento}
+                  onChange={(e) => setAcabamento(e.target.value)}
+                >
+                  <option value="">Selecione</option>
+                  <option value="Fosco">Fosco</option>
+                  <option value="Brilhante">Brilhante</option>
+                  <option value="Texturizado">Texturizado</option>
+                </select>
+              </div>
             </div>
+          </div>
 
-            <div className="edicao-produto-buttons">
-              <button type="button" className="alterar" onClick={handleEditar}>
-                Alterar
-              </button>
-              <button type="button" className="excluir" onClick={handleExcluir}>
-                Excluir
-              </button>
-            </div>
+          <div className="edicao-buttons-row">
+            <button type="button" className="alterar" onClick={handleEditar}>
+              Alterar
+            </button>
+            <button type="button" className="excluir" onClick={handleExcluir}>
+              Excluir
+            </button>
           </div>
         </form>
       </div>

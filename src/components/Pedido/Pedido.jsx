@@ -6,6 +6,7 @@ export default function Pedido({
   status,
   quantidade,
   nome,
+  valor,
 }) {
   const statusOptions = {
     Pendente: "status-pendente",
@@ -32,6 +33,10 @@ export default function Pedido({
         <div className="pedido-quantidade-box">
           <span>Qtde</span>
           <p>{quantidade}</p>
+        </div>
+        <div className="pedido-valor-box">
+          <span>Total</span>
+          <p>R${(valor * quantidade).toFixed(2)}</p>
         </div>
       </div>
     </div>

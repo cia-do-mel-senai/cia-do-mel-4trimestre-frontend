@@ -1,10 +1,10 @@
 import CardProduto from "../../components/CardProduto/CardProduto";
 import Header from "../../components/Header/Header";
-import "./Estoque.css";
+import "./Produtos.css";
 import { useEffect, useState } from "react";
 import { pegarProdutos } from "../../services/servicoProduto";
 
-export default function Catalogo() {
+export default function Produtos() {
   const [produtos, setProdutos] = useState([]);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export default function Catalogo() {
 
   return (
     <div className="catalogo-container">
-      <Header />
+      <Header setProdutos={setProdutos} />
       <div className="catalogo-content">
         {produtos.map((produto) => (
           <CardProduto
