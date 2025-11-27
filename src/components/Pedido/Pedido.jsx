@@ -28,7 +28,7 @@ export default function Pedido({
 
       <div className="pedido-controle">
         <p className={`pedido-status ${statusClass}`}>
-          {status === "Completed" ? "Completo" : status}
+          {status === "COMPLETED" ? "Completo" : status}
         </p>
         <div className="pedido-quantidade-box">
           <span>Qtde</span>
