@@ -10,7 +10,7 @@ export default function Pedido({
 }) {
   const statusOptions = {
     Pendente: "status-pendente",
-    Completed: "status-completo",
+    COMPLETED: "status-completo",
   };
 
   const statusClass = statusOptions[status] || "status-default";
