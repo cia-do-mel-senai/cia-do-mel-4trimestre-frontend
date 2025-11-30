@@ -11,13 +11,13 @@ function LandingPage() {
 
       <div className="LandingPage-content">
         <p>
-          Gerenciar a produção de embalagens nunca foi tão simples. Nosso
-          sistema foi desenvolvido especialmente para empresas do setor apícola
-          que precisam de agilidade, precisão e total controle em cada etapa do
-          processo — do cadastro dos frascos ao controle de estoque e
-          acompanhamento de pedidos. Com uma interface intuitiva e moderna, você
-          administra tudo em um único lugar, reduzindo erros, acelerando o
-          trabalho e garantindo mais qualidade no resultado final.
+          <em>Mais uma vez temos o prazer de anunciar uma grande novidade: <br />
+          A <strong>Cia do Mel</strong> passou a produzir suas próprias embalagens,<br />
+          garantindo ainda mais qualidade em nossos produtos! <br />
+          Aliado a essa evolução, contamos com uma moderna ferramenta <br />
+          que desenvolvemos, o <strong>Sistema de Gestão de Produção - SGP,</strong> <br />
+          visando a otimização do ciclo produtivo, agilidade, precisão <br />
+          e total controle em todas as fases dos processos.</em>  
         </p>
         <button onClick={() => navigate("/login")}>ACESSE</button>
       </div>
